@@ -1,0 +1,327 @@
+{
+  "audit_files": [
+    {
+      "bytes": 3643061,
+      "path": "audit/d1_decisions.csv",
+      "rows": 15291,
+      "sha256": "2d414dc87cdbc243ebe3ec104437516ebf9ea5b89a23d21f7e6757ab9c91a11e"
+    },
+    {
+      "bytes": 2665,
+      "path": "audit/summary.json",
+      "sha256": "cd711cad10c6146891866b750cd7e8ec1ca8cddc470883412cdecaba4f77e60e"
+    }
+  ],
+  "config": {
+    "path": "configs/data_sources.json",
+    "sha256": "84834064202fb0bbc78b13448f84a892373d05cd5956f3c482dfa231acdb148a"
+  },
+  "dataset_revisions": {
+    "d1": "002a9dd18514abd021869823d6b0429b38606d99",
+    "d2": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+    "d3": "e658d94dcafc133e3a4483f9f9aa13507f3848c4",
+    "d4": "847ae76cf8fea5ed325429e569ae8cfef022d2e0"
+  },
+  "processed_files": [
+    {
+      "bytes": 377355,
+      "columns": [
+        "dataset",
+        "split",
+        "sample_id",
+        "source_row",
+        "text",
+        "label",
+        "text_sha256",
+        "normalized_sha256"
+      ],
+      "labels": {
+        "0": 1050,
+        "1": 1051
+      },
+      "path": "processed/d1_test.parquet",
+      "rows": 2101,
+      "sha256": "4677f8ce41d1593841109cd5eed46f4c90ba19e84ed8031b6a930d0d3181d017"
+    },
+    {
+      "bytes": 2114538,
+      "columns": [
+        "dataset",
+        "split",
+        "sample_id",
+        "source_row",
+        "text",
+        "label",
+        "text_sha256",
+        "normalized_sha256"
+      ],
+      "labels": {
+        "0": 6264,
+        "1": 4782
+      },
+      "path": "processed/d1_train.parquet",
+      "rows": 11046,
+      "sha256": "d1106020409855b2dc94682d3d7c68f038c2de0cadd8a32274376fb0e8bca037"
+    },
+    {
+      "bytes": 365504,
+      "columns": [
+        "dataset",
+        "split",
+        "sample_id",
+        "source_row",
+        "text",
+        "label",
+        "text_sha256",
+        "normalized_sha256"
+      ],
+      "labels": {
+        "0": 1043,
+        "1": 942
+      },
+      "path": "processed/d1_validation.parquet",
+      "rows": 1985,
+      "sha256": "01e7de8f932b2a33f87a77a19ff6680825c72f4906bb0801a4c72f2547327f82"
+    },
+    {
+      "bytes": 32017,
+      "columns": [
+        "dataset",
+        "split",
+        "sample_id",
+        "source_row",
+        "text",
+        "label",
+        "text_sha256",
+        "normalized_sha256"
+      ],
+      "labels": {
+        "0": 56,
+        "1": 60
+      },
+      "path": "processed/d2_test.parquet",
+      "rows": 116,
+      "sha256": "a854e06edde9dc917bb9abfba46817e42b372ae1d40b2cc035e693fe7f1ace4b"
+    },
+    {
+      "bytes": 121921,
+      "columns": [
+        "dataset",
+        "split",
+        "sample_id",
+        "source_row",
+        "text",
+        "label",
+        "text_sha256",
+        "normalized_sha256",
+        "source_id",
+        "class",
+        "attack_family",
+        "technique",
+        "severity",
+        "language",
+        "source_name"
+      ],
+      "labels": {
+        "0": 265,
+        "1": 280
+      },
+      "path": "processed/d3_test.parquet",
+      "rows": 545,
+      "sha256": "ad98c776d81d30d68a984d32e2e8005185243ade1651cad70fa870742ef70dff"
+    },
+    {
+      "bytes": 82150,
+      "columns": [
+        "dataset",
+        "split",
+        "sample_id",
+        "source_row",
+        "text",
+        "label",
+        "text_sha256",
+        "normalized_sha256",
+        "subset",
+        "trigger_count",
+        "category",
+        "trigger_words_json"
+      ],
+      "labels": {
+        "0": 339
+      },
+      "path": "processed/d4_test.parquet",
+      "rows": 339,
+      "sha256": "2615eac345ff890f16cce720a1b9e1868a8e38853deb5acfe5a0e32a4d83c791"
+    }
+  ],
+  "processor_version": "1.0.0",
+  "raw_files": [
+    {
+      "bytes": 111112,
+      "columns": [
+        "text",
+        "label"
+      ],
+      "labels": {
+        "0": 1050,
+        "1": 1051
+      },
+      "path": "raw/d1_test.csv",
+      "rows": 2101,
+      "sha256": "4c7a9f0fff2bf7d3f6d3e7b84863a8f5d6c48c70c3ac7fe874917074c8f27853"
+    },
+    {
+      "bytes": 747016,
+      "columns": [
+        "text",
+        "label"
+      ],
+      "labels": {
+        "0": 6303,
+        "1": 4786
+      },
+      "path": "raw/d1_train.csv",
+      "rows": 11089,
+      "sha256": "bab012fec95d4214599b18777fd6efc5cc5e9545354df581880aeca5c1d487d7"
+    },
+    {
+      "bytes": 122918,
+      "columns": [
+        "text",
+        "label"
+      ],
+      "labels": {
+        "0": 1050,
+        "1": 1051
+      },
+      "path": "raw/d1_validation.csv",
+      "rows": 2101,
+      "sha256": "c7d14d24a14dd30a37ebe0de928b8ccdcdf6639c3c2e830b59561e2dd5fb7b55"
+    },
+    {
+      "bytes": 10892,
+      "columns": [
+        "text",
+        "label"
+      ],
+      "labels": {
+        "0": 56,
+        "1": 60
+      },
+      "path": "raw/d2_test.parquet",
+      "rows": 116,
+      "sha256": "39ac797cabc157eeed58435a08593b2952bb6cb16fc394a2d383f447cc7b246e"
+    },
+    {
+      "bytes": 40323,
+      "columns": [
+        "text",
+        "label"
+      ],
+      "labels": {
+        "0": 343,
+        "1": 203
+      },
+      "path": "raw/d2_train.parquet",
+      "rows": 546,
+      "sha256": "2e10bc7ab30f542c97e4e83e2a5683000b5057d25ec10908784c631d44124c04"
+    },
+    {
+      "bytes": 38305,
+      "columns": [
+        "text",
+        "label",
+        "class",
+        "attack_family",
+        "technique",
+        "severity",
+        "language",
+        "source",
+        "id"
+      ],
+      "labels": {
+        "0": 265,
+        "1": 280
+      },
+      "path": "raw/d3_test.parquet",
+      "rows": 545,
+      "sha256": "7becda4542ee2d844d854b6e07195630e14b52c51f0bee4bdbb27eb9ed93d964"
+    },
+    {
+      "bytes": 367573,
+      "columns": [
+        "text",
+        "label",
+        "class",
+        "attack_family",
+        "technique",
+        "severity",
+        "language",
+        "source",
+        "id"
+      ],
+      "labels": {
+        "0": 1761,
+        "1": 2162
+      },
+      "path": "raw/d3_train.parquet",
+      "rows": 3923,
+      "sha256": "fc6ed1619af0c53c36d60361132422bc45984d3875337d6f465d5f4daa628cac"
+    },
+    {
+      "bytes": 37667,
+      "columns": [
+        "text",
+        "label",
+        "class",
+        "attack_family",
+        "technique",
+        "severity",
+        "language",
+        "source",
+        "id"
+      ],
+      "labels": {
+        "0": 159,
+        "1": 308
+      },
+      "path": "raw/d3_validation.parquet",
+      "rows": 467,
+      "sha256": "e21a7ee7e2e6a12a424c8c8490aae3d9c18aab3d67765e2e997813d1c148d213"
+    },
+    {
+      "bytes": 10859,
+      "columns": [
+        "prompt",
+        "word_list",
+        "category"
+      ],
+      "path": "raw/d4_one.parquet",
+      "rows": 113,
+      "sha256": "5b1d3a8ec341205305efd8c6d2cabeb5ba0f594dd8726b08ee7fde1a46ddc6ec"
+    },
+    {
+      "bytes": 13009,
+      "columns": [
+        "prompt",
+        "word_list",
+        "category"
+      ],
+      "path": "raw/d4_three.parquet",
+      "rows": 113,
+      "sha256": "d5c685b123570c092a0f374ba6bdf324b2026d905a2751a243eb2bb360d411a8"
+    },
+    {
+      "bytes": 11183,
+      "columns": [
+        "prompt",
+        "word_list",
+        "category"
+      ],
+      "path": "raw/d4_two.parquet",
+      "rows": 113,
+      "sha256": "a5a8c1b3b851b0b5acc3b6caf8bfee26d7da631b2967dd31ca90358df8883feb"
+    }
+  ],
+  "schema_version": 1
+}

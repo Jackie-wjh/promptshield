@@ -1,0 +1,181 @@
+pipeline,direction,rank,feature,coefficient
+word,attack,1,your,12.703385181924167
+word,attack,2,you,8.424044867531924
+word,attack,3,restrictions,6.327523049449105
+word,attack,4,guidelines,5.598742082199484
+word,attack,5,configuration,4.5706928486406175
+word,attack,6,instructions,4.443367438994337
+word,attack,7,this,4.346906911449754
+word,attack,8,rules,4.286390008936687
+word,attack,9,share,3.6441349762417086
+word,attack,10,unrestricted,3.436651298423564
+word,attack,11,prompt,3.3631572787807307
+word,attack,12,now,3.3573430031461915
+word,attack,13,safety,3.356440692879572
+word,attack,14,system,3.2733202197502975
+word,attack,15,hidden,3.2703830194175523
+word,attack,16,that,3.254918254745505
+word,attack,17,reveal,2.9239927494838636
+word,attack,18,ai,2.7226547028190673
+word,attack,19,just,2.701851338168289
+word,attack,20,text,2.6907390895387846
+word,attack,21,answer,2.6791683566106714
+word,attack,22,mode,2.626988174469097
+word,attack,23,as,2.602330933683728
+word,attack,24,sharing,2.6007178387630234
+word,attack,25,execute,2.513355082744987
+word,attack,26,bypass,2.495779454864486
+word,attack,27,ur,2.391521531725548
+word,attack,28,operational,2.3816452734387306
+word,attack,29,true,2.3683316320715444
+word,attack,30,if,2.3656187825298005
+word,benign,1,how,-6.560158177120541
+word,benign,2,what,-6.084958909951492
+word,benign,3,how do,-5.648095165923976
+word,benign,4,the,-5.326275964179824
+word,benign,5,do,-4.758454904371317
+word,benign,6,what are,-4.75372826253029
+word,benign,7,what is,-4.355673027129818
+word,benign,8,explain,-4.3544434451599034
+word,benign,9,my,-4.1893564740412605
+word,benign,10,can you,-4.148482598284634
+word,benign,11,our,-3.62246887672297
+word,benign,12,you explain,-3.353675782056348
+word,benign,13,can,-3.2969461902326342
+word,benign,14,in,-2.439006995504777
+word,benign,15,about,-2.417552459959141
+word,benign,16,are the,-2.404216198572458
+word,benign,17,work,-2.2675541062882
+word,benign,18,is,-2.1839986055431235
+word,benign,19,would you,-2.1669467306065915
+word,benign,20,for,-2.1295126121624737
+word,benign,21,feel,-2.0225935839968905
+word,benign,22,how does,-1.9385588010099395
+word,benign,23,does,-1.7212511079152122
+word,benign,24,injection,-1.6480255162324704
+word,benign,25,ai safety,-1.6434568794778652
+word,benign,26,what the,-1.6062701847821275
+word,benign,27,create,-1.6060917991235177
+word,benign,28,development,-1.5941685243402735
+word,benign,29,uses,-1.5907547067893033
+word,benign,30,how to,-1.5816037095492597
+char,attack,1,you,5.104635976518684
+char,attack,2, yo,4.237588099530109
+char,attack,3, you,4.201762705468697
+char,attack,4,your,3.8235519061896013
+char,attack,5,your ,3.7208446121721606
+char,attack,6, your,3.40190969098529
+char,attack,7,ur ,2.600018549624832
+char,attack,8,our ,2.180667067263891
+char,attack,9,e y,2.081555250513886
+char,attack,10,e yo,2.0474499858994064
+char,attack,11,e you,2.042750303779702
+char,attack,12, wh,2.0185185612963963
+char,attack,13,our,1.8945486278824295
+char,attack,14,rul,1.887134485371
+char,attack,15,now,1.8723229967311434
+char,attack,16,restr,1.8427418464025094
+char,attack,17,estri,1.8346812238291057
+char,attack,18,thi,1.815692147090685
+char,attack,19,rict,1.805058008826491
+char,attack,20,trict,1.805058008826491
+char,attack,21, th,1.802613738950682
+char,attack,22,estr,1.7978377163452037
+char,attack,23,ou ,1.7824607116082516
+char,attack,24,you ,1.7824607116082516
+char,attack,25,stric,1.7683423456131784
+char,attack,26,str,1.763235927673016
+char,attack,27, no,1.7442882414662306
+char,attack,28,ict,1.7274308555211537
+char,attack,29, rul,1.6902154099676412
+char,attack,30,rule,1.690147720372288
+char,benign,1,wha,-2.716012577382739
+char,benign,2,what,-2.6981367190706202
+char,benign,3,what ,-2.5738062518168805
+char,benign,4,how d,-2.545010713183123
+char,benign,5,w d,-2.4801331817207517
+char,benign,6,ow d,-2.4538027832749436
+char,benign,7,w do,-2.438408734573115
+char,benign,8,ow do,-2.430232338554633
+char,benign,9, do,-2.348246231685932
+char,benign,10, do ,-2.346981527846849
+char,benign,11,the ,-2.3285310862571227
+char,benign,12,he ,-2.312378489808393
+char,benign,13,w do ,-2.233017027857722
+char,benign,14,do ,-2.1540572108818656
+char,benign,15,how ,-2.000226445170996
+char,benign,16,my ,-1.9913435533747887
+char,benign,17,in ,-1.879783721114602
+char,benign,18,at ar,-1.8352903841378065
+char,benign,19,at is,-1.8158505051922122
+char,benign,20,how,-1.8085571240682465
+char,benign,21,t are,-1.7985016564599603
+char,benign,22,can y,-1.7205830138076785
+char,benign,23,o i,-1.686649403353831
+char,benign,24,t ar,-1.6818685895562333
+char,benign,25,t is ,-1.635539871596335
+char,benign,26,an yo,-1.6191729240838098
+char,benign,27,an y,-1.6191729240838098
+char,benign,28,t is,-1.6074146956710653
+char,benign,29,hat,-1.5920809846216308
+char,benign,30, do i,-1.5804616779132699
+combined,attack,1,word__your,5.869021180521679
+combined,attack,2,word__you,4.110903813576646
+combined,attack,3,char__you,3.548742971921725
+combined,attack,4,char__ yo,3.0282791321520195
+combined,attack,5,char__ you,2.9914207496858976
+combined,attack,6,char__your,2.5518730600543456
+combined,attack,7,word__rules,2.526666338774737
+combined,attack,8,char__your ,2.4507643825086367
+combined,attack,9,char__ your,2.2732615881481104
+combined,attack,10,word__now,2.2091651851727736
+combined,attack,11,word__guidelines,2.1726583251688316
+combined,attack,12,word__restrictions,2.0983774872829994
+combined,attack,13,word__this,2.067514498400638
+combined,attack,14,word__mode,1.9250889658774
+combined,attack,15,word__that,1.9214364162631448
+combined,attack,16,char__ur ,1.8719798435022936
+combined,attack,17,word__as,1.8142823954372382
+combined,attack,18,word__system,1.7478313373561691
+combined,attack,19,word__share,1.7327427589464552
+combined,attack,20,char__ wh,1.6575846403699879
+combined,attack,21,word__ai,1.5688356889415667
+combined,attack,22,char__our ,1.5586242525628566
+combined,attack,23,char__ th,1.5321270329408698
+combined,attack,24,char__ what,1.5173237951617937
+combined,attack,25,char__restr,1.499246726802828
+combined,attack,26,char__ wha,1.4927938616419287
+combined,attack,27,word__text,1.490168975533861
+combined,attack,28,char__estri,1.4877531755512896
+combined,attack,29,char__e y,1.4725337744234077
+combined,attack,30,char__estr,1.4662904676661217
+combined,benign,1,word__what,-3.7329776499416
+combined,benign,2,word__how,-3.697983207975685
+combined,benign,3,word__the,-3.2618895564707264
+combined,benign,4,word__how do,-3.0856780278200735
+combined,benign,5,word__do,-2.949321124944337
+combined,benign,6,word__our,-2.8942367411021563
+combined,benign,7,word__what are,-2.786522701186805
+combined,benign,8,word__my,-2.7559001636298315
+combined,benign,9,word__what is,-2.646073056768329
+combined,benign,10,word__can you,-2.404777322669713
+combined,benign,11,word__explain,-2.1911958208509072
+combined,benign,12,word__can,-2.0469074287569695
+combined,benign,13,word__you explain,-1.730968128268413
+combined,benign,14,word__would you,-1.7262396345743694
+combined,benign,15,word__is,-1.5720635127632483
+combined,benign,16,word__are the,-1.5554557067847339
+combined,benign,17,char__how d,-1.5221391155651318
+combined,benign,18,char__wha,-1.5146188927653683
+combined,benign,19,char__what,-1.4992854431011686
+combined,benign,20,char__w d,-1.489988106577776
+combined,benign,21,char__ow d,-1.4670525010561826
+combined,benign,22,char__the ,-1.4639417371388825
+combined,benign,23,char__he ,-1.4497854978452664
+combined,benign,24,char__ do,-1.4392774698073696
+combined,benign,25,char__w do,-1.43457372110157
+combined,benign,26,char__ow do,-1.428814899600286
+combined,benign,27,char__what ,-1.4155446755824246
+combined,benign,28,char__ do ,-1.371016080534578
+combined,benign,29,word__in,-1.3664824107090712
+combined,benign,30,word__about,-1.2960913356935346

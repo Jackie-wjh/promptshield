@@ -1,0 +1,90 @@
+{
+  "schema_version": 1,
+  "datasets": {
+    "d1": {
+      "name": "S-Labs/prompt-injection-dataset",
+      "revision": "002a9dd18514abd021869823d6b0429b38606d99",
+      "url": "https://huggingface.co/datasets/S-Labs/prompt-injection-dataset",
+      "license": "MIT",
+      "role": "primary_train_validation_test",
+      "files": {
+        "d1_train.csv": {
+          "split": "train",
+          "rows": 11089,
+          "labels": {"0": 6303, "1": 4786}
+        },
+        "d1_validation.csv": {
+          "split": "validation",
+          "rows": 2101,
+          "labels": {"0": 1050, "1": 1051}
+        },
+        "d1_test.csv": {
+          "split": "test",
+          "rows": 2101,
+          "labels": {"0": 1050, "1": 1051}
+        }
+      },
+      "expected_processed": {
+        "train": {"rows": 11046, "labels": {"0": 6264, "1": 4782}},
+        "validation": {"rows": 1985, "labels": {"0": 1043, "1": 942}},
+        "test": {"rows": 2101, "labels": {"0": 1050, "1": 1051}}
+      }
+    },
+    "d2": {
+      "name": "deepset/prompt-injections",
+      "revision": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+      "url": "https://huggingface.co/datasets/deepset/prompt-injections",
+      "license": "Apache-2.0",
+      "role": "external_test_only",
+      "files": {
+        "d2_train.parquet": {
+          "split": "train_unused",
+          "rows": 546,
+          "labels": {"0": 343, "1": 203}
+        },
+        "d2_test.parquet": {
+          "split": "test",
+          "rows": 116,
+          "labels": {"0": 56, "1": 60}
+        }
+      }
+    },
+    "d3": {
+      "name": "3nesdeniz/agentic-prompt-injection-5k",
+      "revision": "e658d94dcafc133e3a4483f9f9aa13507f3848c4",
+      "url": "https://huggingface.co/datasets/3nesdeniz/agentic-prompt-injection-5k",
+      "license": "CC-BY-4.0",
+      "role": "external_test_only",
+      "files": {
+        "d3_train.parquet": {
+          "split": "train_unused",
+          "rows": 3923,
+          "labels": {"0": 1761, "1": 2162}
+        },
+        "d3_validation.parquet": {
+          "split": "validation_unused",
+          "rows": 467,
+          "labels": {"0": 159, "1": 308}
+        },
+        "d3_test.parquet": {
+          "split": "test",
+          "rows": 545,
+          "labels": {"0": 265, "1": 280}
+        }
+      }
+    },
+    "d4": {
+      "name": "leolee99/NotInject",
+      "revision": "847ae76cf8fea5ed325429e569ae8cfef022d2e0",
+      "url": "https://huggingface.co/datasets/leolee99/NotInject",
+      "license": "MIT",
+      "role": "benign_stress_test_only",
+      "files": {
+        "d4_one.parquet": {"split": "test", "rows": 113, "trigger_count": 1},
+        "d4_two.parquet": {"split": "test", "rows": 113, "trigger_count": 2},
+        "d4_three.parquet": {"split": "test", "rows": 113, "trigger_count": 3}
+      }
+    }
+  }
+}
+

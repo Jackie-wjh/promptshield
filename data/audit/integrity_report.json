@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "d1_audit_decisions": "passed",
+    "d1_raw_mapping": "passed",
+    "d2_raw_mapping": "passed",
+    "d3_raw_and_metadata_mapping": "passed",
+    "d4_raw_and_metadata_mapping": "passed",
+    "manifest_hashes": "passed",
+    "post_clean_overlap": {
+      "d1_pairwise_exact": 0,
+      "d1_train_external_nfkc_casefold": {
+        "d2": 0,
+        "d3": 0,
+        "d4": 0
+      }
+    }
+  },
+  "d1_exclusions": {
+    "conflicting_labels": 2,
+    "duplicate_same_label": 37,
+    "overlap_with_test": 116,
+    "overlap_with_validation": 4
+  },
+  "row_counts": {
+    "d1_test": 2101,
+    "d1_train": 11046,
+    "d1_validation": 1985,
+    "d2_test": 116,
+    "d3_test": 545,
+    "d4_test": 339
+  },
+  "scope_note": "This verifies file identity, schema, row mapping, labels, hashes, exact cleaning, metadata preservation, and specified exact overlaps. It does not prove semantic label correctness, absence of paraphrased near-duplicates, or absence of pretraining contamination.",
+  "status": "passed"
+}

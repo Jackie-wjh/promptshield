@@ -1,0 +1,4 @@
+pipeline,model_id,selected_C,dev_macro_f1_at_0.5,features,model_path,checkpoint_rev,model_size_bytes,batch1_latency_ms_median,batch1_latency_ms_p95
+char,e1_char_tfidf_lr,1.0,0.9787543424014091,50000,models/e1/char.joblib,c94e7056ed63db5b34e82af062cf703697182458755aae50e5377ceed2376063,775386,0.1666875000410073,0.20704970038423195
+combined,e1_combined_tfidf_lr,1.0,0.9817917749579574,100000,models/e1/combined.joblib,e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3,1662934,0.36647900014941115,0.44254549998186116
+word,e1_word_tfidf_lr,1.0,0.9772292808123584,50000,models/e1/word.joblib,eac9dd413689e80a2f75d9cedcc5d2818d0ac2e6e3f6ed5c6a5bc59e2480e2bf,888080,0.14779150023969123,0.1593107505868829

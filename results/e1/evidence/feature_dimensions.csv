@@ -1,0 +1,6 @@
+pipeline,branch,features
+word,word,50000
+char,char,50000
+combined,word,50000
+combined,char,50000
+combined,total,100000
