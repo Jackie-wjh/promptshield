@@ -1,0 +1,2 @@
+pipeline,model_id,selected_condition,dev_macro_f1_at_0.5,vocab_size,model_path,model_size_mb,batch1_latency_ms_median,batch1_latency_ms_p95
+bilstm,e2_bilstm_random,random,0.9868664011954349,9386,models/e2\bilstm_random_best.pt,4.67,0.54,1.04

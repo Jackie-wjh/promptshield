@@ -1,0 +1,25 @@
+# Python & Bytecode
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+env/
+venv/
+.venv/
+ENV/
+
+# Large Pretrained Weights & Downloads (Keep data clean)
+data/pretrained/
+*.zip
+*.tar.gz
+
+# Note: models/ checkpoints are kept in git for reproducible handoffs (<10MB)
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+~$*

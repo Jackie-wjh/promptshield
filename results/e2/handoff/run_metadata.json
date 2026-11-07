@@ -1,0 +1,12 @@
+{
+  "experiment": "E2 BiLSTM",
+  "device": "cpu",
+  "seed": 6405,
+  "vocab_size": 9386,
+  "glove_coverage": 0.9293553542887587,
+  "oov_rate": 0.0706446457112413,
+  "best_condition": "random",
+  "median_latency_ms": 0.5419499975687359,
+  "p95_latency_ms": 1.0368649996962631,
+  "timestamp": "2026-11-07 12:07:10"
+}

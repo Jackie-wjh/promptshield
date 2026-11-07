@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_id": "e2_bilstm_initialization",
+  "seed": 6405,
+  "model": {
+    "embedding_dim": 100,
+    "hidden_size": 128,
+    "bidirectional": true,
+    "pooling": "masked_mean",
+    "dropout": 0.3,
+    "trainable_embedding": true
+  },
+  "training": {
+    "max_length": 256,
+    "batch_size": 64,
+    "learning_rate": 0.001,
+    "weight_decay": 0.0,
+    "max_epochs": 8,
+    "patience": 2,
+    "selection_metric": "macro_f1",
+    "selection_threshold": 0.5
+  },
+  "conditions": [
+    {
+      "name": "random",
+      "description": "Random normal initialization for embeddings"
+    },
+    {
+      "name": "glove",
+      "description": "Pretrained GloVe 6B 100d embeddings"
+    }
+  ],
+  "datasets": {
+    "train": "data/processed/d1_train.parquet",
+    "validation": "data/processed/d1_validation.parquet",
+    "test_sets": [
+      {"dataset": "d1_test", "path": "data/processed/d1_test.parquet"},
+      {"dataset": "d2_test", "path": "data/processed/d2_test.parquet"},
+      {"dataset": "d3_test", "path": "data/processed/d3_test.parquet"}
+    ]
+  },
+  "latency": {
+    "warmup_samples": 10,
+    "measured_samples": 100,
+    "batch_size": 1
+  }
+}
