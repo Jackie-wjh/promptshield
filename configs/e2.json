@@ -36,7 +36,8 @@
     "test_sets": [
       {"dataset": "d1_test", "path": "data/processed/d1_test.parquet"},
       {"dataset": "d2_test", "path": "data/processed/d2_test.parquet"},
-      {"dataset": "d3_test", "path": "data/processed/d3_test.parquet"}
+      {"dataset": "d3_test", "path": "data/processed/d3_test.parquet"},
+      {"dataset": "d4_test", "path": "data/processed/d4_test.parquet"}
     ]
   },
   "latency": {

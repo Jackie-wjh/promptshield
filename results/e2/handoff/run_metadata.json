@@ -6,7 +6,8 @@
   "glove_coverage": 0.9293553542887587,
   "oov_rate": 0.0706446457112413,
   "best_condition": "random",
-  "median_latency_ms": 0.5419499975687359,
-  "p95_latency_ms": 1.0368649996962631,
-  "timestamp": "2026-11-07 12:07:10"
+  "checkpoint_rev": "bb4d64fc5ed6186d0907bcd8583fa1ef5b5d247ae3752ff81c7fbe1f51f7be4d",
+  "median_latency_ms": 7.982650000030844,
+  "p95_latency_ms": 11.104334999799903,
+  "timestamp": "2026-11-10 20:35:50"
 }

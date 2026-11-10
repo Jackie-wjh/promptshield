@@ -1,12 +1,13 @@
 {
   "selected_condition": "random",
-  "checkpoint": "models/e2\\bilstm_random_best.pt",
-  "validation_macro_f1": 0.9868664011954349,
+  "checkpoint": "models/e2/bilstm_random_best.pt",
+  "checkpoint_rev": "bb4d64fc5ed6186d0907bcd8583fa1ef5b5d247ae3752ff81c7fbe1f51f7be4d",
+  "validation_macro_f1": 0.9863605442955925,
   "vocab_size": 9386,
   "glove_coverage": 0.9293553542887587,
   "oov_rate": 0.0706446457112413,
   "parameters": 1174377,
   "model_size_mb": 4.67,
-  "batch1_latency_median_ms": 0.54,
-  "batch1_latency_p95_ms": 1.04
+  "batch1_latency_median_ms": 7.98,
+  "batch1_latency_p95_ms": 11.1
 }
