@@ -87,7 +87,7 @@ E5's selected typo augmentation improved attack recall under one random typo by 
 The live interface loads the lightweight frozen E1 and E5 pipelines. Research results for E2–E4 are displayed from the final E6 artifacts, so the demo remains usable without loading large Transformer checkpoints.
 
 ```bash
-git clone https://github.com/Run-Y/promptshield.git
+git clone https://github.com/Jackie-wjh/promptshield.git
 cd promptshield
 
 python3 -m venv .venv
