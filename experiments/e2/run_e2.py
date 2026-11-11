@@ -7,8 +7,6 @@ Features:
 - Exports training records to results/e2/tuning.csv.
 - Generates raw scores in exact handoff schema for E6:
   `dataset, split, sample_id, gold, score_attack, model_id, checkpoint_rev, seed, transform_id, parent_id`
-  where checkpoint_rev is official SHA-256 hash, parent_id is null/None for clean samples.
-- Covers D1 Validation (1,985) + D1 Test (2,101) + D2 Test (116) + D3 Test (545) + D4 Test (339) = 5,086 rows.
 - Produces training loss & F1 curve figures in results/e2/figures/.
 """
 
@@ -36,15 +34,6 @@ from experiments.e2.dataset import (
     pad_collate_fn,
 )
 from experiments.e2.model import BiLSTMClassifier
-
-
-def compute_file_sha256(filepath: str) -> str:
-    """Computes exact SHA-256 hash of a file for reproducible provenance."""
-    sha256 = hashlib.sha256()
-    with open(filepath, "rb") as f:
-        while chunk := f.read(8192):
-            sha256.update(chunk)
-    return sha256.hexdigest()
 
 
 def set_seed(seed: int = 6405):
@@ -84,7 +73,7 @@ def evaluate_model(
             all_golds.extend(labels.cpu().numpy().astype(int).tolist())
             all_ids.extend(batch["sample_ids"])
 
-    avg_loss = total_loss / len(loader.dataset) if len(loader.dataset) > 0 else 0.0
+    avg_loss = total_loss / len(loader.dataset)
     preds = [1 if s >= threshold else 0 for s in all_scores]
     macro_f1 = float(f1_score(all_golds, preds, average="macro", zero_division=0))
     return avg_loss, macro_f1, all_scores, all_golds, all_ids
@@ -129,7 +118,7 @@ def train_condition(
 
     best_val_f1 = -1.0
     best_epoch = -1
-    best_ckpt_path = os.path.join(output_dir, f"bilstm_{condition_name}_best.pt").replace("\\", "/")
+    best_ckpt_path = os.path.join(output_dir, f"bilstm_{condition_name}_best.pt")
     patience = train_cfg["patience"]
     patience_counter = 0
     history = []
@@ -295,11 +284,11 @@ def main():
             h["glove_coverage"] = coverage_rate
             h["oov_rate"] = oov_rate
         all_history.extend(hist)
-        best_models[cond_name] = {"checkpoint": ckpt_path.replace("\\", "/"), "best_val_f1": best_f1}
+        best_models[cond_name] = {"checkpoint": ckpt_path, "best_val_f1": best_f1}
 
     # Save tuning.csv
     df_tuning = pd.DataFrame(all_history)
-    tuning_csv_path = os.path.join(args.results_dir, "tuning.csv").replace("\\", "/")
+    tuning_csv_path = os.path.join(args.results_dir, "tuning.csv")
     df_tuning.to_csv(tuning_csv_path, index=False)
     print(f"[E2] Tuning history saved to {tuning_csv_path}")
 
@@ -323,7 +312,7 @@ def main():
     plt.legend()
     plt.grid(True, linestyle="--", alpha=0.5)
 
-    fig_path = os.path.join(args.results_dir, "figures", "e2_learning_curves.png").replace("\\", "/")
+    fig_path = os.path.join(args.results_dir, "figures", "e2_learning_curves.png")
     plt.tight_layout()
     plt.savefig(fig_path, dpi=200)
     plt.close()
@@ -332,10 +321,7 @@ def main():
     # 6. Select the single best model to export handoff scores for M6
     best_overall_cond = max(best_models.keys(), key=lambda c: best_models[c]["best_val_f1"])
     best_overall = best_models[best_overall_cond]
-    ckpt_clean_path = best_overall["checkpoint"].replace("\\", "/")
-    ckpt_sha256 = compute_file_sha256(ckpt_clean_path)
     print(f"\n[E2] Selected Overall Best Architecture: '{best_overall_cond}' (Val F1: {best_overall['best_val_f1']:.4f})")
-    print(f"[E2] Best Checkpoint SHA-256: {ckpt_sha256}")
 
     # Load best checkpoint
     best_model = BiLSTMClassifier(
@@ -345,29 +331,32 @@ def main():
         dropout=config["model"]["dropout"],
     ).to(device)
 
-    saved_state = torch.load(ckpt_clean_path, map_location=device)
+    saved_state = torch.load(best_overall["checkpoint"], map_location=device)
     best_model.load_state_dict(saved_state["model_state_dict"])
     best_model.eval()
 
     # Latency & Model Size
     median_lat, p95_lat = measure_batch1_latency(best_model, vocab, device)
     param_count = sum(p.numel() for p in best_model.parameters())
-    model_size_mb = os.path.getsize(ckpt_clean_path) / (1024 * 1024)
+    model_size_mb = os.path.getsize(best_overall["checkpoint"]) / (1024 * 1024)
 
-    # 7. Generate Handoff Scores for D1 Validation and ALL Test Sets (including D4)
+    # 7. Generate Handoff Scores for D1 Validation and all Test Sets
     criterion = nn.BCEWithLogitsLoss()
     handoff_records = []
+    with open(best_overall["checkpoint"], "rb") as checkpoint_file:
+        checkpoint_rev = hashlib.sha256(checkpoint_file.read()).hexdigest()
 
+    # Evaluation schedule: D1 Validation + D1 Test, D2 Test, D3 Test
     eval_splits = [("d1", "validation", df_val)]
     for item in config["datasets"]["test_sets"]:
-        d_name = item["dataset"]
+        d_name = item["dataset"]  # e.g., d1_test
         parts = d_name.split("_")
         d_prefix = parts[0]
         s_name = parts[1]
         df_test = pd.read_parquet(item["path"])
         eval_splits.append((d_prefix, s_name, df_test))
 
-    print("\n[E2] Running final inference on Val and all Test sets (D1, D2, D3, D4) for handoff to M6...")
+    print("\n[E2] Running final inference on Val and Test sets for handoff to M6...")
     for d_prefix, s_name, df_target in eval_splits:
         cur_ds = PromptDataset(df_target, vocab, max_length=max_len)
         cur_loader = DataLoader(cur_ds, batch_size=batch_size, shuffle=False, collate_fn=pad_collate_fn)
@@ -383,7 +372,7 @@ def main():
                 "gold": int(g_label),
                 "score_attack": float(score),
                 "model_id": f"bilstm_{best_overall_cond}",
-                "checkpoint_rev": ckpt_sha256,
+                "checkpoint_rev": checkpoint_rev,
                 "seed": config["seed"],
                 "transform_id": "clean",
                 "parent_id": None,
@@ -391,18 +380,16 @@ def main():
 
     # Save to parquet exactly meeting handoff contract
     df_handoff = pd.DataFrame(handoff_records)
-    # Ensure parent_id is typed as string with nulls, consistent with pyarrow
-    df_handoff["parent_id"] = df_handoff["parent_id"].astype("string")
-    handoff_parquet_path = os.path.join(args.results_dir, "handoff", "bilstm_scores.parquet").replace("\\", "/")
+    handoff_parquet_path = os.path.join(args.results_dir, "handoff", "bilstm_scores.parquet")
     df_handoff.to_parquet(handoff_parquet_path, index=False)
     print(f"\n[E2] Official raw scores handoff saved to: {handoff_parquet_path}")
-    print(f"[E2] Total rows: {len(df_handoff)} (D1 Val: 1,985, D1 Test: 2,101, D2 Test: 116, D3 Test: 545, D4 Test: 339)")
+    row_summary = df_handoff.groupby(["dataset", "split"]).size().to_dict()
+    print(f"[E2] Total rows: {len(df_handoff)}; split counts: {row_summary}")
 
     # 8. Save selected_config.json & run_metadata.json
     selected_cfg = {
         "selected_condition": best_overall_cond,
-        "checkpoint": ckpt_clean_path,
-        "checkpoint_rev": ckpt_sha256,
+        "checkpoint": best_overall["checkpoint"],
         "validation_macro_f1": best_overall["best_val_f1"],
         "vocab_size": vocab_size,
         "glove_coverage": coverage_rate,
@@ -423,7 +410,6 @@ def main():
         "glove_coverage": coverage_rate,
         "oov_rate": oov_rate,
         "best_condition": best_overall_cond,
-        "checkpoint_rev": ckpt_sha256,
         "median_latency_ms": median_lat,
         "p95_latency_ms": p95_lat,
         "timestamp": time.strftime("%Y-%m-%d %H:%M:%S"),

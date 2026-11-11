@@ -1,0 +1,10 @@
+# Versions recorded by the official E3 run metadata.
+# Install the appropriate CPU or CUDA torch wheel for the target machine.
+torch==2.7.1
+transformers==5.22.2
+numpy==2.1.2
+pandas==3.0.6
+pyarrow==26.0.1
+scikit-learn==1.9.1
+matplotlib==3.11.2
+safetensors>=0.4

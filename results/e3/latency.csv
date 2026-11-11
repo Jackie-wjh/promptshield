@@ -1,0 +1,3 @@
+model_id,component,device,batch_size,warmup_trials,measured_trials,includes_tokenization,excludes_model_loading,median_ms,p95_ms,mean_ms
+e3_distilbert_base_uncased,full_pipeline,cuda,1,20,100,True,True,2.7135999989695847,4.248499993991572,2.897619999712333
+e3_distilbert_base_uncased,full_pipeline,cpu,1,20,100,True,True,9.621700002753641,11.279800006741425,9.766991999495076

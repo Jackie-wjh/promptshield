@@ -1,0 +1,126 @@
+{
+  "schema_version": 2,
+  "experiment_id": "e5_typo_augmentation",
+  "owner": "M5 / E5",
+  "research_question": "Holding the E1 Combined vectorizer (word 1-2 gram + char 3-5 gram TF-IDF vocabulary and IDF), the feature configuration and C=1 fixed, does appending controlled typo-perturbed copies of D1 Train to the training set make the detector more robust to misspelled prompts, and what does it cost on clean text and on benign-only false alarms?",
+  "threat_model": "accidental single-character typos in alphabetic words of at least four letters (adjacent swap, deletion, duplication, QWERTY-neighbour substitution; interior letters only)",
+  "score_type": "predict_proba_class_1_uncalibrated",
+  "frozen": {
+    "e1_config": "configs/e1.json",
+    "e1_model": "models/e1/combined.joblib",
+    "e1_selected_models": "results/e1/selected_models.csv",
+    "e1_model_sha256": "e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3",
+    "e1_handoff_scores": "results/e1/handoff/combined_scores.parquet",
+    "C": 1.0,
+    "expected_features": 100000,
+    "expected_branch_features": {"word": 50000, "char": 50000},
+    "note": "The fitted FeatureUnion is taken from the E1 joblib (hash cross-checked against results/e1/selected_models.csv) and is never refit, cloned or passed to GridSearchCV. Only the Logistic Regression is retrained, once per training-set composition. Vocabulary, IDF and coefficient content hashes are recorded."
+  },
+  "seeds": {
+    "classifier": 6405,
+    "augment_train_copies": [6701, 6702],
+    "augment_select": [6501, 6502, 6503, 6504, 6505],
+    "augment_eval_canonical": 6511,
+    "augment_eval_extra": [6512, 6513, 6514, 6515],
+    "bootstrap": 6601,
+    "delta_se": 6602,
+    "qa_sample": 6603,
+    "note": "Single source of truth for every seed. Training, selection and evaluation perturbation seeds are disjoint; the classifier seed must equal configs/e1.json seed and must not change."
+  },
+  "typo": {
+    "operators": ["swap", "delete", "duplicate", "qwerty"],
+    "eligible_core_regex": "^[^A-Za-z]*([A-Za-z]{4,})[^A-Za-z]*$",
+    "interior_characters_only": true,
+    "max_attempts": 10,
+    "pre_freeze_forbidden": "normalized hashes of D1 Train and D1 Validation originals plus already generated texts of the same condition",
+    "post_freeze_audit": "every augmented and perturbed text is compared with all six processed splits; counts go to results/e5/duplicate_equivalence_check.json; nothing is altered",
+    "normalization": "NFKC + casefold + whitespace collapse, SHA-256"
+  },
+  "lexicon": {
+    "source": "D1 Train labels only, eligible-shaped lower-cased unigrams",
+    "df_min": 20,
+    "top_k_candidates": [50, 100, 150, 200, 300, 400],
+    "coverage_target": 0.8,
+    "k_rule": "the smallest candidate k whose top-k attack words occur in at least coverage_target of the eligible attack texts of D1 Train AND whose top-k benign words occur in at least coverage_target of the eligible benign texts; otherwise the largest candidate (recorded as target not met). k is capped at half the number of candidate words so the two class lists never overlap. A training-only statistic, fixed before any model is scored.",
+    "score": "log((df_attack + 1) / (n_attack + 2)) - log((df_benign + 1) / (n_benign + 2))",
+    "output": "results/e5/lexicon.csv",
+    "policy": "attack texts receive the typo in the present attack-indicative word with the largest |log-odds| (first occurrence); benign texts in the benign-indicative word; random1 fallback is recorded"
+  },
+  "conditions": [
+    {"name": "clean", "policy": null, "rate": 0.0, "copies": 0, "control": true, "description": "D1 Train as released (11,046 rows)"},
+    {"name": "dup_x1", "policy": "dup", "rate": 0.0, "copies": 1, "control": true, "description": "count-matched control: originals + one exact duplicate of every eligible text (same parent set as aug_random1_x1); never eligible as primary"},
+    {"name": "aug_random1_x1", "policy": "random1", "rate": 0.0, "copies": 1, "control": false, "description": "originals + one copy per eligible text with exactly one typo in a uniformly random eligible word"},
+    {"name": "aug_random_p30_x1", "policy": "random_rate", "rate": 0.30, "copies": 1, "control": false, "description": "originals + one copy with typos in ceil(0.30 x eligible words) distinct words, at least one"},
+    {"name": "aug_targeted1_x1", "policy": "targeted_lexical", "rate": 0.0, "copies": 1, "control": false, "description": "originals + one copy with one typo in the lexicon word of the text's own class (attack texts: attack-indicative word; benign texts: benign-indicative word)"},
+    {"name": "aug_random1_x2", "policy": "random1", "rate": 0.0, "copies": 2, "control": false, "description": "originals + two independently seeded random1 copies; copy 0 is identical to aug_random1_x1 (nested contrast)"}
+  ],
+  "selection": {
+    "dataset": "d1_validation",
+    "threshold": 0.5,
+    "candidates": "every non-control condition",
+    "perturbation_policy": "random1",
+    "realizations": "five random1 copies of D1 Validation (seeds augment_select); one targeted_lexical copy (first seed) is descriptive only",
+    "objective": "maximise the mean Macro F1 at 0.5 over the five random1 realizations",
+    "guard": "clean D1 Validation Macro F1 at 0.5 >= clean condition's value minus delta, where delta = one class-stratified bootstrap standard error of the clean condition's own validation Macro F1 (1,000 resamples, seed delta_se)",
+    "guard_multiplier": 1.0,
+    "tie_rule": "candidates whose mean lies within the leader's realization SD are tied; ties prefer fewer copies, then lighter rate, then policy order random1 < random_rate < targeted_lexical, then list order",
+    "fallback": "if no candidate passes the guard, select the candidate with the highest clean validation Macro F1 and record guard_failed = true",
+    "sensitivity": {"guard_multipliers": [0.0, 0.5, 1.0, 2.0], "single_realizations": true, "output": "results/e5/selection_sensitivity.csv"},
+    "note": "D1 Validation only. selected_config.json is written with frozen = true before any test split or D4 is opened; D1/D2/D3 Test and D4 are scored once afterwards."
+  },
+  "evaluation": {
+    "datasets": ["d1_validation", "d1_test", "d2_test", "d3_test", "d4_test"],
+    "expected_rows": {"d1_validation": 1985, "d1_test": 2101, "d2_test": 116, "d3_test": 545, "d4_test": 339},
+    "perturbed_splits": ["d1_validation", "d1_test", "d2_test", "d3_test"],
+    "perturbation_policies": ["random1", "targeted_lexical"],
+    "canonical_seed_note": "augment_eval_canonical produces the handoff pairs; the canonical draw together with the augment_eval_extra draws (five random1 realizations) is summarised as mean and SD (ddof=1) in results/e5/evidence/eval_realizations.csv",
+    "threshold_policies": ["default_0.5", "tF1", "t5"],
+    "threshold_source": "E5 provisional: tF1/t5 selected per model on clean D1 Validation with E1's rule; E6 owns the authoritative thresholds",
+    "d4_note": "D4 NotInject is benign-only and never perturbed: only FP/N, FPR and Wilson 95% intervals are reported, overall and by every slice column found among trigger_count and category; never F1, recall or AUROC."
+  },
+  "bootstrap": {
+    "n_boot": 1000,
+    "seed_note": "seeds.bootstrap",
+    "resampling": "paired, class-stratified (attack and benign rows resampled independently; D4 rows stratified by trigger_count when present); the same draw is applied to both models",
+    "primary_comparison": "delta attack recall (augmented minus clean) under typo_random1 at the canonical evaluation seed on eligible attack rows of D1 Test at threshold 0.5",
+    "secondary": "augmented minus clean at 0.5 and provisional tF1 for clean text on D1/D2/D3/D4 and for the canonical random1 and targeted_lexical copies of D1/D2/D3 test; provisional t5 for D1 clean text and D1 random1 text only; augmented minus dup_x1 for D1 (clean and both typo copies). All labelled secondary in bootstrap.csv"
+  },
+  "qa": {
+    "nominal_rows": "up to 12 strata x per_operator_per_stage + extra_real_word_rows = 140 rows before availability caps and de-duplication",
+    "per_operator_per_stage": 10,
+    "stages": ["train", "selection", "evaluation"],
+    "extra_real_word_rows": 20,
+    "seed_note": "seeds.qa_sample",
+    "criteria": {
+      "qa_plausible_typo": "the change looks like a slip a person could make on a keyboard",
+      "qa_word_recognizable": "a reader still recognises the intended word",
+      "qa_meaning_unchanged": "the sentence keeps its meaning and its label",
+      "qa_ok": "1 only if all three criteria hold"
+    },
+    "failure_rule": "a failed QA means fixing the generator and rerunning the whole experiment; never selective regeneration or re-selection"
+  },
+  "latency": {
+    "warmup_samples": 10,
+    "measured_samples": 100,
+    "batch_size": 1,
+    "includes_vectorization": true,
+    "texts": "d1_test"
+  },
+  "model_ids": {
+    "clean": "e5_clean_combined_tfidf_lr",
+    "augmented": "e5_augmented_combined_tfidf_lr",
+    "note": "stable regardless of which condition wins; the condition is recorded in selected_config.json and handoff/checkpoint_path.txt"
+  },
+  "transform_id_vocabulary": {
+    "clean_rows": "clean",
+    "training_copies": "typo_<policy>_s<seed>_c<copy_index> or dup_c<copy_index>",
+    "selection": "typo_<policy>_s<seed>",
+    "evaluation": "typo_<policy>_s<seed>"
+  },
+  "provenance": {
+    "data_manifest": "data/audit/manifest.json",
+    "data_sources": "configs/data_sources.json",
+    "e1_config": "configs/e1.json",
+    "note": "SHA-256 of the manifest, dataset revisions and all dependency versions are recorded in results/e5/run_metadata.json at run time"
+  }
+}

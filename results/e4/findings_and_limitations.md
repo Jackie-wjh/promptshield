@@ -1,0 +1,9 @@
+# E4 Findings and Limitations
+
+RoBERTa's high source-validation performance did not prevent substantial false alarms on external benign text. We fine-tuned RoBERTa-base on 11,046 cleaned D1 training examples and compared learning rates of 2e-5 and 5e-5, using seed 6405, FP32, batch size 16, a 256-token limit, and three epochs per learning rate. The selected checkpoint used learning rate 2e-05 at epoch 1, with D1 validation Macro F1 of 0.9863 at threshold 0.5. Selection was completed before test scoring.
+
+At the fixed reference threshold of 0.5, Macro F1 was 0.9423 on D1, 0.8963 on D2, and 0.5073 on D3. Attack recall was 0.8906, 0.8167, and 1.0000, while false-positive rates were 0.0057, 0.0179, and 0.8264, respectively. The benign-only D4 set produced 191 false positives among 339 examples. These are reference results; E6 will determine the authoritative validation-selected operating thresholds.
+
+On the local RTX 3060 Laptop GPU, end-to-end batch-one median and P95 latency were 10.78 and 12.65 ms, including tokenization. The supplied DistilBERT checkpoint was remeasured using the same device, inputs and precision, giving a median of 5.33 ms. RoBERTa's saved checkpoint occupied 480.1 MiB; peak training tensor allocation was 2634 MiB.
+
+Word-span masking on six prespecified E2 case IDs quantified local score sensitivity. Masking can create out-of-distribution inputs, and these selected cases neither establish causal explanations nor represent all errors. Only one training seed was used, so training variability remains unmeasured. D2 has only 56 benign and 60 attack examples, making small differences unstable. Different tokenizers, pretraining and library versions limit architectural attribution. Scores are uncalibrated, and source-specific annotation policies limit claims about deployment security.

@@ -1,0 +1,118 @@
+{
+  "d1": {
+    "exclusions": {
+      "conflicting_labels": 2,
+      "duplicate_same_label": 37,
+      "overlap_with_test": 116,
+      "overlap_with_validation": 4
+    },
+    "observations": {
+      "train_conflicting_rows": 2,
+      "train_conflicting_text_groups": 1,
+      "train_exact_text_duplicate_excess": 38,
+      "train_nfkc_casefold_duplicate_excess": 39,
+      "train_same_label_duplicate_excess": 37,
+      "train_test_exact_overlap_unique_texts": 0,
+      "train_validation_exact_overlap_unique_texts": 4,
+      "validation_test_exact_overlap_unique_texts": 116
+    },
+    "processed": {
+      "test": {
+        "labels": {
+          "0": 1050,
+          "1": 1051
+        },
+        "rows": 2101
+      },
+      "train": {
+        "labels": {
+          "0": 6264,
+          "1": 4782
+        },
+        "rows": 11046
+      },
+      "validation": {
+        "labels": {
+          "0": 1043,
+          "1": 942
+        },
+        "rows": 1985
+      }
+    },
+    "raw": {
+      "test": {
+        "labels": {
+          "0": 1050,
+          "1": 1051
+        },
+        "rows": 2101
+      },
+      "train": {
+        "labels": {
+          "0": 6303,
+          "1": 4786
+        },
+        "rows": 11089
+      },
+      "validation": {
+        "labels": {
+          "0": 1050,
+          "1": 1051
+        },
+        "rows": 2101
+      }
+    }
+  },
+  "external_tests": {
+    "d2": {
+      "labels": {
+        "0": 56,
+        "1": 60
+      },
+      "rows": 116
+    },
+    "d3": {
+      "labels": {
+        "0": 265,
+        "1": 280
+      },
+      "rows": 545
+    },
+    "d4": {
+      "category_rows": {
+        "Common Queries": 126,
+        "Multilingual": 84,
+        "Technique Queries": 87,
+        "Virtual Creation": 42
+      },
+      "labels": {
+        "0": 339
+      },
+      "rows": 339,
+      "trigger_count_rows": {
+        "1": 113,
+        "2": 113,
+        "3": 113
+      }
+    }
+  },
+  "limitations": [
+    "Near-duplicate and semantic-overlap review is not automated in this stage.",
+    "NFKC/casefold hashes are audit aids and are never substituted for model input.",
+    "D2 train and D3 train/validation are retained only as pinned raw files and are not exported for model fitting."
+  ],
+  "post_clean_overlap_checks": {
+    "d1_train_d2_test_nfkc_casefold": 0,
+    "d1_train_d3_test_nfkc_casefold": 0,
+    "d1_train_d4_test_nfkc_casefold": 0,
+    "d1_train_test_exact": 0,
+    "d1_train_validation_exact": 0,
+    "d1_validation_test_exact": 0
+  },
+  "processor_version": "1.0.0",
+  "schema_version": 1,
+  "text_policy": {
+    "audit_normalization": "Unicode NFKC followed by casefold",
+    "model_input": "original_text_unchanged"
+  }
+}

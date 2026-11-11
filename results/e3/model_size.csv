@@ -1,0 +1,2 @@
+model_id,n_parameters,dtype,param_bytes,checkpoint_bytes,checkpoint_dir,weights_sha256,n_features_or_vocab
+e3_distilbert_base_uncased,66955010,float32,267820040,268545194,E:\pg course\6405\group project\promptshield\models\e3\lr2e-5,3d87334843a23c0430820056f259883bbb74d23183c52da6fabd62419f93b973,30522

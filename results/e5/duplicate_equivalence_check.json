@@ -1,0 +1,96 @@
+{
+  "groups": [
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "selection_random1",
+      "copy_index": 0,
+      "n_texts": 9865,
+      "role": "selection"
+    },
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "selection_targeted_lexical",
+      "copy_index": 0,
+      "n_texts": 1973,
+      "role": "selection"
+    },
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "aug_random1_x1",
+      "copy_index": 0,
+      "n_texts": 10997,
+      "role": "train"
+    },
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "aug_random1_x2",
+      "copy_index": 0,
+      "n_texts": 10997,
+      "role": "train"
+    },
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "aug_random1_x2",
+      "copy_index": 1,
+      "n_texts": 10997,
+      "role": "train"
+    },
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "aug_random_p30_x1",
+      "copy_index": 0,
+      "n_texts": 10997,
+      "role": "train"
+    },
+    {
+      "collisions_with_d1_test": 0,
+      "collisions_with_d1_train": 0,
+      "collisions_with_d1_validation": 0,
+      "collisions_with_d2_test": 0,
+      "collisions_with_d3_test": 0,
+      "collisions_with_d4_test": 0,
+      "condition": "aug_targeted1_x1",
+      "copy_index": 0,
+      "n_texts": 10997,
+      "role": "train"
+    }
+  ],
+  "normalized_overlap_d1_train_vs_split": {
+    "d1_test": 0,
+    "d2_test": 0,
+    "d3_test": 0,
+    "d4_test": 0
+  },
+  "note": "Pre-freeze, copies were filtered against D1 Train and D1 Validation only. This audit compares every augmented or perturbed text with every processed split after the freeze; nothing is altered.",
+  "total_collisions": 0
+}

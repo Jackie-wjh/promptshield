@@ -1,0 +1,3 @@
+pipeline,model_id,condition,selected_C,dev_macro_f1_at_0.5,dev_perturbed_macro_f1_at_0.5,features,model_path,checkpoint_rev,model_size_bytes,batch1_latency_ms_median,batch1_latency_ms_p95,latency_device,latency_warmup,latency_measured,latency_includes_vectorization
+e5_clean,e5_clean_combined_tfidf_lr,clean,1.0,0.9817917749579574,0.9744050628818893,100000,models/e5/clean.joblib,40ff2097e04fc62b92c654e410638183dff3b9dd237468633aff5bf27f68e042,1617025,5.490000003192108,7.374265001999447,cpu,10,100,True
+e5_augmented,e5_augmented_combined_tfidf_lr,aug_random_p30_x1,1.0,0.9843329944565253,0.977894107346277,100000,models/e5/aug_random_p30_x1.joblib,b2ddbcc08ae4197be42bfee19eb6c4c1c493a4ec124271963eaebd09cd3b446b,1659763,5.8142499983659945,7.9569499954232015,cpu,10,100,True

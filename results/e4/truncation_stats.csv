@@ -1,0 +1,7 @@
+dataset_split,n,tokens_median,tokens_p95,tokens_max,truncated_rows,truncation_rate
+d1_train,11046,12.0,28.0,114,0,0.0
+d1_validation,1985,10.0,18.0,44,0,0.0
+d1_test,2101,9.0,16.0,37,0,0.0
+d2_test,116,22.0,105.75,254,0,0.0
+d3_test,545,41.0,62.0,77,0,0.0
+d4_test,339,24.0,69.0,119,0,0.0

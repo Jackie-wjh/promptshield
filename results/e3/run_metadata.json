@@ -1,0 +1,142 @@
+{
+  "config_sha256": "1940571eab367dbe3495d96cb303df8695b4fc5403e0ec27575132f18a929dfc",
+  "data_integrity": {
+    "checks": {
+      "d1_test": {
+        "actual_rows": 2101,
+        "actual_sha256": "4677f8ce41d1593841109cd5eed46f4c90ba19e84ed8031b6a930d0d3181d017",
+        "label_counts": {
+          "0": 1050,
+          "1": 1051
+        },
+        "manifest_rows": 2101,
+        "manifest_sha256": "4677f8ce41d1593841109cd5eed46f4c90ba19e84ed8031b6a930d0d3181d017",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d1_validation": {
+        "actual_rows": 1985,
+        "actual_sha256": "01e7de8f932b2a33f87a77a19ff6680825c72f4906bb0801a4c72f2547327f82",
+        "label_counts": {
+          "0": 1043,
+          "1": 942
+        },
+        "manifest_rows": 1985,
+        "manifest_sha256": "01e7de8f932b2a33f87a77a19ff6680825c72f4906bb0801a4c72f2547327f82",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d2_test": {
+        "actual_rows": 116,
+        "actual_sha256": "a854e06edde9dc917bb9abfba46817e42b372ae1d40b2cc035e693fe7f1ace4b",
+        "label_counts": {
+          "0": 56,
+          "1": 60
+        },
+        "manifest_rows": 116,
+        "manifest_sha256": "a854e06edde9dc917bb9abfba46817e42b372ae1d40b2cc035e693fe7f1ace4b",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d3_test": {
+        "actual_rows": 545,
+        "actual_sha256": "ad98c776d81d30d68a984d32e2e8005185243ade1651cad70fa870742ef70dff",
+        "label_counts": {
+          "0": 265,
+          "1": 280
+        },
+        "manifest_rows": 545,
+        "manifest_sha256": "ad98c776d81d30d68a984d32e2e8005185243ade1651cad70fa870742ef70dff",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d4_test": {
+        "actual_rows": 339,
+        "actual_sha256": "2615eac345ff890f16cce720a1b9e1868a8e38853deb5acfe5a0e32a4d83c791",
+        "label_counts": {
+          "0": 339
+        },
+        "manifest_rows": 339,
+        "manifest_sha256": "2615eac345ff890f16cce720a1b9e1868a8e38853deb5acfe5a0e32a4d83c791",
+        "sample_id_unique": true,
+        "status": "passed"
+      }
+    },
+    "manifest_sha256": "5b31db14e47963ce7309d6b2f032214b3f6652128790386efc6d10d6fa9678ef",
+    "note": "Computed here because the handoff package does not include scripts/check_data_integrity.py.",
+    "status": "passed"
+  },
+  "data_manifest_sha256": "5b31db14e47963ce7309d6b2f032214b3f6652128790386efc6d10d6fa9678ef",
+  "environment": {
+    "cuda_runtime": "12.8",
+    "cudnn": 90701,
+    "device_used": "cuda",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+    "gpu_capability": [
+      12,
+      0
+    ],
+    "gpu_total_memory_mb": 8150.5625,
+    "numpy": "2.1.2",
+    "pandas": "3.0.6",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.11.11",
+    "scikit_learn": "1.9.1",
+    "torch": "2.7.1+cu128",
+    "transformers": "5.22.2"
+  },
+  "experiment_id": "e3_distilbert_learning_rate",
+  "git": "n/a - the handoff package is not a git repository; provenance is carried by file hashes in this metadata",
+  "notes": [
+    "Vocabulary, model weights and all optimisation decisions use cleaned D1 train only.",
+    "The checkpoint was selected on D1 validation Macro F1 at threshold 0.5; ties prefer the earlier epoch, then the smaller learning rate.",
+    "D1/D2/D3 test and D4 were scored once, after the checkpoint was frozen; no test-informed revision was performed.",
+    "D4 contains benign texts only, so it is reported as false alarms in E6, not as a balanced classification score.",
+    "Class-1 scores are uncalibrated softmax outputs, not probabilities of maliciousness.",
+    "Learning-rate candidates 2e-5 and 5e-5 use the same tokenizer, batch, schedule, epoch budget, seed and evaluation code; only the learning rate differs.",
+    "Extra seeds are reported as spread for the frozen configuration and never replace the primary seed 6405."
+  ],
+  "reproduction": {
+    "app_command": "streamlit run app/promptshield_app.py",
+    "command": "python experiments/e3/run_e3.py",
+    "verify_command": "python experiments/e3/verify_e3.py"
+  },
+  "scores": {
+    "file": "results/e3/handoff/distilbert_scores.parquet",
+    "higher_means": "more attack-like",
+    "rows": 5086,
+    "rows_per_split": {
+      "d1/test": 2101,
+      "d1/validation": 1985,
+      "d2/test": 116,
+      "d3/test": 545,
+      "d4/test": 339
+    },
+    "score_type": "softmax_class_1_uncalibrated"
+  },
+  "selected_model": {
+    "checkpoint_epoch": 1,
+    "checkpoint_rev": "3d87334843a23c0430820056f259883bbb74d23183c52da6fabd62419f93b973",
+    "learning_rate": 2e-05,
+    "model_id": "e3_distilbert_base_uncased",
+    "seed": 6405
+  },
+  "selection_rule": {
+    "candidates": "every (learning_rate, epoch) pair of the primary seed",
+    "dataset": "d1_validation",
+    "metric": "macro_f1",
+    "note": "D1 validation only. D1/D2/D3/D4 test scores are produced once, after the checkpoint is frozen.",
+    "threshold": 0.5,
+    "tie_break": [
+      "higher_dev_macro_f1",
+      "earlier_epoch",
+      "smaller_learning_rate"
+    ]
+  },
+  "status": "complete",
+  "timing": {
+    "epochs_trained": 6,
+    "seconds_per_epoch": 36.19087078333299,
+    "total_training_seconds": 217.14522469999793
+  }
+}

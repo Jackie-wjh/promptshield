@@ -1,0 +1,8 @@
+# Versions recorded by the official E5 run metadata.
+pandas==3.0.5
+pyarrow==26.0.1
+numpy==2.5.2
+scikit-learn==1.9.1
+scipy==1.18.0
+matplotlib==3.11.1
+joblib==1.5.3

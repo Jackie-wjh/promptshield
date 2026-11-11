@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="420" viewBox="0 0 1400 420" role="img" aria-labelledby="title desc">
+  <title id="title">PromptShield</title>
+  <desc id="desc">Prompt injection detection under source shift</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#071426"/>
+      <stop offset="0.55" stop-color="#0f2741"/>
+      <stop offset="1" stop-color="#123c46"/>
+    </linearGradient>
+    <linearGradient id="shield" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#31d5c8"/>
+      <stop offset="1" stop-color="#0f8f87"/>
+    </linearGradient>
+    <radialGradient id="glow">
+      <stop offset="0" stop-color="#2dd4bf" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#2dd4bf" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#020617" flood-opacity="0.38"/>
+    </filter>
+  </defs>
+
+  <rect width="1400" height="420" rx="28" fill="url(#bg)"/>
+  <circle cx="1175" cy="205" r="250" fill="url(#glow)"/>
+  <path d="M0 355 C230 305 380 405 610 350 S1020 285 1400 350 V420 H0Z" fill="#2dd4bf" opacity="0.06"/>
+  <path d="M0 382 C250 330 450 430 700 370 S1120 325 1400 382" fill="none" stroke="#67e8f9" stroke-opacity="0.09" stroke-width="2"/>
+
+  <g transform="translate(88 74)">
+    <text x="0" y="26" fill="#5eead4" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="700" letter-spacing="3">EE6405 · NATURAL LANGUAGE PROCESSING</text>
+    <text x="0" y="115" fill="#f8fafc" font-family="Arial, Helvetica, sans-serif" font-size="72" font-weight="800">PromptShield</text>
+    <text x="0" y="160" fill="#b8c6d9" font-family="Arial, Helvetica, sans-serif" font-size="27">Prompt injection detection under source shift</text>
+    <text x="0" y="207" fill="#7f94ad" font-family="Arial, Helvetica, sans-serif" font-size="18">TF-IDF · BiLSTM · DistilBERT · RoBERTa · Robustness · Threshold analysis</text>
+
+    <g transform="translate(0 245)" font-family="Arial, Helvetica, sans-serif" font-size="16" font-weight="700">
+      <rect width="155" height="46" rx="23" fill="#15364a" stroke="#2dd4bf" stroke-opacity="0.55"/>
+      <text x="77.5" y="29" fill="#ccfbf1" text-anchor="middle">6 experiments</text>
+      <rect x="171" width="142" height="46" rx="23" fill="#15364a" stroke="#38bdf8" stroke-opacity="0.45"/>
+      <text x="242" y="29" fill="#dbeafe" text-anchor="middle">4 datasets</text>
+      <rect x="329" width="170" height="46" rx="23" fill="#15364a" stroke="#a78bfa" stroke-opacity="0.45"/>
+      <text x="414" y="29" fill="#ede9fe" text-anchor="middle">Streamlit demo</text>
+    </g>
+  </g>
+
+  <g transform="translate(1040 76)" filter="url(#shadow)">
+    <path d="M130 0 L248 42 V132 C248 207 199 263 130 294 C61 263 12 207 12 132 V42Z" fill="url(#shield)"/>
+    <path d="M130 25 L222 58 V132 C222 188 189 232 130 261 C71 232 38 188 38 132 V58Z" fill="#071426" opacity="0.9"/>
+    <rect x="70" y="94" width="120" height="94" rx="18" fill="#102a3d" stroke="#5eead4" stroke-opacity="0.55"/>
+    <circle cx="94" cy="117" r="5" fill="#fb7185"/>
+    <circle cx="111" cy="117" r="5" fill="#fbbf24"/>
+    <circle cx="128" cy="117" r="5" fill="#4ade80"/>
+    <path d="M91 145 L112 158 L91 171" fill="none" stroke="#5eead4" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M127 171 H164" stroke="#e2e8f0" stroke-width="7" stroke-linecap="round"/>
+  </g>
+</svg>

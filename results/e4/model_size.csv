@@ -1,0 +1,2 @@
+model_id,n_parameters,checkpoint_bytes,weights_bytes,checkpoint_rev
+e4_roberta_base,124647170,503428743,498612824,d43841dbaa6db09088e77f17f567b966dc5c4642adaac324eead707e5b3a10c3

@@ -1,0 +1,73 @@
+{
+  "time_utc": "2026-11-08T19:18:09.056173+00:00",
+  "chosen_micro_batch": 16,
+  "effective_batch": 16,
+  "precision": "fp32",
+  "reason": "Both train-only probes fit; batch 16 uses the same physical batch and FP32 precision as E3 and is faster. No validation or test outcome used.",
+  "probes": [
+    {
+      "status": "passed",
+      "scope": "D1 train only; these weights are discarded",
+      "sample_count": 100,
+      "steps": 50,
+      "micro_batch_size": 4,
+      "effective_batch_size": 16,
+      "precision": "fp32",
+      "first_step_max_token_length": 114,
+      "median_update_seconds_after_warmup": 0.28335790001438,
+      "peak_allocated_mib": 2311.75439453125,
+      "peak_reserved_mib": 2650.0,
+      "environment": {
+        "python": "3.11.9",
+        "platform": "Windows-10-10.0.22631-SP0",
+        "torch": "2.7.1+cu126",
+        "transformers": "4.46.3",
+        "tokenizers": "0.20.3",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "18.1.0",
+        "sklearn": "1.5.2",
+        "cuda": "12.6",
+        "cpu_threads": 4,
+        "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+        "total_vram_mib": 6143.5,
+        "cudnn": 90701,
+        "git_base_commit": "031b119918143e8048518b5bb6037d299b283b5f"
+      },
+      "time_utc": "2026-11-08T19:17:00.535889+00:00",
+      "estimated_six_epoch_training_seconds": 1174.8018534596195
+    },
+    {
+      "status": "passed",
+      "scope": "D1 train only; these weights are discarded",
+      "sample_count": 100,
+      "steps": 50,
+      "micro_batch_size": 16,
+      "effective_batch_size": 16,
+      "precision": "fp32",
+      "first_step_max_token_length": 114,
+      "median_update_seconds_after_warmup": 0.24950560001889244,
+      "peak_allocated_mib": 2636.77490234375,
+      "peak_reserved_mib": 3394.0,
+      "environment": {
+        "python": "3.11.9",
+        "platform": "Windows-10-10.0.22631-SP0",
+        "torch": "2.7.1+cu126",
+        "transformers": "4.46.3",
+        "tokenizers": "0.20.3",
+        "numpy": "1.26.4",
+        "pandas": "2.2.3",
+        "pyarrow": "18.1.0",
+        "sklearn": "1.5.2",
+        "cuda": "12.6",
+        "cpu_threads": 4,
+        "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+        "total_vram_mib": 6143.5,
+        "cudnn": 90701,
+        "git_base_commit": "031b119918143e8048518b5bb6037d299b283b5f"
+      },
+      "time_utc": "2026-11-08T19:17:33.463002+00:00",
+      "estimated_six_epoch_training_seconds": 1034.450217678328
+    }
+  ]
+}

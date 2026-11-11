@@ -1,25 +1,49 @@
-# Python & Bytecode
+# Python
 __pycache__/
 *.py[cod]
-*$py.class
 *.so
 .Python
-env/
-venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# Virtual environments
 .venv/
+venv/
+env/
 ENV/
 
-# Large Pretrained Weights & Downloads (Keep data clean)
-data/pretrained/
-*.zip
-*.tar.gz
+# Streamlit secrets and local state
+.streamlit/secrets.toml
+.cache/
 
-# Note: models/ checkpoints are kept in git for reproducible handoffs (<10MB)
-
-# OS & IDE
+# Editors and operating systems
 .DS_Store
 Thumbs.db
 .idea/
 .vscode/
 *.swp
 ~$*
+
+# Training outputs and temporary artifacts
+checkpoints/
+wandb/
+runs/
+*.tmp
+*.log
+*.zip
+*.tar.gz
+
+# Large Transformer weights are reproducible from the experiment code.
+# Their hashes remain documented in MODEL_MANIFEST.json.
+models/e3/
+models/e4/
+*.safetensors
+*.bin
+
+# Administrative course documents are kept outside the public code repository.
+*Reflection*.docx
+*Declaration*.docx
+*Declaration*.pdf

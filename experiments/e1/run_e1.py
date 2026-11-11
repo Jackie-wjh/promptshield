@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Run E1 Word, Char, and Combined TF-IDF Logistic Regression experiments."""
+"""Run E1 models and export threshold-free scores for the E6 handoff."""
 
 from __future__ import annotations
 
@@ -39,6 +39,20 @@ if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
 from scripts.check_data_integrity import run_checks
+
+
+HANDOFF_COLUMNS = [
+    "dataset",
+    "split",
+    "sample_id",
+    "gold",
+    "score_attack",
+    "model_id",
+    "checkpoint_rev",
+    "seed",
+    "transform_id",
+    "parent_id",
+]
 
 
 def parse_args() -> argparse.Namespace:
@@ -129,6 +143,36 @@ def attack_scores(model: Pipeline, texts: pd.Series | list[str]) -> np.ndarray:
     classifier = model.named_steps["classifier"]
     attack_index = int(np.flatnonzero(classifier.classes_ == 1)[0])
     return model.predict_proba(list(texts))[:, attack_index]
+
+
+def make_handoff_frame(
+    frame: pd.DataFrame,
+    scores: np.ndarray,
+    *,
+    dataset: str,
+    split: str,
+    model_id: str,
+    checkpoint_rev: str,
+    seed: int,
+) -> pd.DataFrame:
+    """Build the threshold-free score contract consumed by E6."""
+    if len(frame) != len(scores):
+        raise ValueError("Handoff frame and score lengths differ")
+    return pd.DataFrame(
+        {
+            "dataset": dataset,
+            "split": split,
+            "sample_id": frame["sample_id"].astype(str).tolist(),
+            "gold": frame["label"].to_numpy(dtype=int),
+            "score_attack": np.asarray(scores, dtype=float),
+            "model_id": model_id,
+            "checkpoint_rev": checkpoint_rev,
+            "seed": int(seed),
+            "transform_id": "clean",
+            "parent_id": pd.Series([None] * len(frame), dtype="string"),
+        },
+        columns=HANDOFF_COLUMNS,
+    )
 
 
 def metric_record(gold: np.ndarray, scores: np.ndarray, threshold: float) -> dict[str, Any]:
@@ -310,6 +354,8 @@ def main() -> None:
     processed = project_root / "data/processed"
     results_dir = project_root / "results/e1"
     predictions_dir = results_dir / "predictions"
+    handoff_dir = results_dir / "handoff"
+    reference_dir = results_dir / "reference_only"
     models_dir = project_root / "models/e1"
 
     integrity = run_checks(project_root)
@@ -323,6 +369,13 @@ def main() -> None:
         "d1": pd.read_parquet(processed / "d1_test.parquet"),
         "d2": pd.read_parquet(processed / "d2_test.parquet"),
         "d3": pd.read_parquet(processed / "d3_test.parquet"),
+    }
+    handoff_sets = {
+        ("d1", "validation"): validation,
+        ("d1", "test"): evaluation["d1"],
+        ("d2", "test"): evaluation["d2"],
+        ("d3", "test"): evaluation["d3"],
+        ("d4", "test"): pd.read_parquet(processed / "d4_test.parquet"),
     }
     x_train = train["text"].tolist()
     y_train = train["label"].to_numpy(dtype=int)
@@ -430,6 +483,25 @@ def main() -> None:
             }
         )
 
+        handoff_parts: list[pd.DataFrame] = []
+        for (dataset, split), frame in handoff_sets.items():
+            scores = attack_scores(best_model, frame["text"])
+            handoff_parts.append(
+                make_handoff_frame(
+                    frame,
+                    scores,
+                    dataset=dataset,
+                    split=split,
+                    model_id=model_id,
+                    checkpoint_rev=checkpoint_revision,
+                    seed=int(config["seed"]),
+                )
+            )
+        atomic_parquet(
+            pd.concat(handoff_parts, ignore_index=True),
+            handoff_dir / f"{representation}_scores.parquet",
+        )
+
         prediction_parts: list[pd.DataFrame] = []
         for dataset, frame in evaluation.items():
             gold = frame["label"].to_numpy(dtype=int)
@@ -498,9 +570,11 @@ def main() -> None:
         raise RuntimeError("Combined local explanations were not generated")
 
     atomic_csv(tuning, results_dir / "tuning.csv")
-    atomic_csv(thresholds_frame, results_dir / "thresholds.csv")
-    atomic_csv(metrics_frame, results_dir / "metrics.csv")
-    atomic_csv(main_results_frame, results_dir / "main_results_tF1.csv")
+    # E6 owns final threshold analysis. These E1-only calculations are retained
+    # solely as reproducibility references and are excluded from formal handoff.
+    atomic_csv(thresholds_frame, reference_dir / "thresholds.csv")
+    atomic_csv(metrics_frame, reference_dir / "metrics.csv")
+    atomic_csv(main_results_frame, reference_dir / "main_results_tF1.csv")
     atomic_csv(selected_frame, results_dir / "selected_models.csv")
     atomic_csv(dimensions_frame, results_dir / "feature_dimensions.csv")
     atomic_csv(coefficients_frame, results_dir / "global_coefficients.csv")
@@ -516,9 +590,16 @@ def main() -> None:
         "data_manifest_sha256": data_manifest_sha,
         "data_integrity_status": integrity["status"],
         "selection_rule": config["selection"],
-        "primary_threshold_policy": "tF1",
+        "threshold_status": "provisional_reference_only",
         "selected_models": selected_rows,
-        "main_results_tF1": main_results,
+        "handoff": {
+            "columns": HANDOFF_COLUMNS,
+            "rows_per_model": int(sum(len(frame) for frame in handoff_sets.values())),
+            "datasets": [
+                {"dataset": dataset, "split": split, "rows": int(len(frame))}
+                for (dataset, split), frame in handoff_sets.items()
+            ],
+        },
         "environment": {
             "python": platform.python_version(),
             "platform": platform.platform(),
@@ -531,16 +612,17 @@ def main() -> None:
         "notes": [
             "All vocabularies and IDF values were fitted on cleaned D1 train only.",
             "C was selected on D1 validation Macro F1 at threshold 0.5; ties prefer smaller C.",
-            "tF1 and t5 thresholds were selected only from D1 validation scores; ties prefer higher thresholds.",
+            "E1 threshold calculations are provisional reference outputs; E6 owns final tF1/t5 selection and unified metrics.",
             "Class-1 scores are uncalibrated Logistic Regression predict_proba outputs.",
-            "D2 and D3 were used only after model and threshold selection.",
+            "Threshold-free scores for D1 validation, D1/D2/D3 test, and D4 test are exported to results/e1/handoff.",
+            "D2, D3, and D4 were used only after model selection.",
         ],
     }
     atomic_json(summary, results_dir / "run_summary.json")
 
     print("E1 complete", flush=True)
     print(selected_frame.to_string(index=False), flush=True)
-    print("Primary tF1 results", flush=True)
+    print("Provisional E1-only tF1 reference results", flush=True)
     print(
         pd.DataFrame(main_results)[
             ["pipeline", "dataset", "macro_f1", "attack_recall", "fpr", "auroc"]

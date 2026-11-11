@@ -1,0 +1,9 @@
+# E6 Findings and Limitations
+
+**Question and controlled change.** E6 holds every frozen model and its scores fixed and changes only the decision threshold: the default 0.5, t_F1 (maximum D1-validation Macro F1) and t_5 (maximum validation attack recall at FPR ≤ 5%). Both are selected on D1 validation alone and frozen before any test or NotInject row is evaluated.
+
+**Evidence.** For E1 Combined TF-IDF+LR (`results/e6/metrics.csv`, Figure 8.1), moving from t_F1 = 0.424 to t_5 = 0.265 raises D1 test recall from 93.0% to 97.0% and keeps FPR at 4.2%, inside the 5% budget. The same thresholds give 19.6% FPR on D2, 63.8% on D3 and 43.1% on the benign-only NotInject set (146/339; 23.0% at 0.5). All 8 evaluated models select thresholds below 0.5, and E3 DistilBERT, the strongest in domain (Macro F1 0.983), flags 98.9% of D3 benign rows at t_F1.
+
+**Explanation.** A validation-optimal threshold sits where the D1 classes separate. Benign text from other sources, such as D3 hard negatives that reuse injection vocabulary, scores above it. Moving the threshold shifts errors between the two classes; it cannot repair a mismatch in what the representation has learned. Where a model has no features for an input, the intercept decides the outcome. E1 Combined TF-IDF+LR scores 82 of 84 Chinese NotInject prompts at a constant 0.250, below both thresholds, whereas the constant for E1 Word TF-IDF+LR equals its t_F1, so it flags all of them.
+
+**Limitations.** Scores are uncalibrated, and each threshold is valid only for its own model. D2 has only 56 benign rows, so one error moves FPR by 1.8 points and its intervals are wide. D3 is synthetic and template-built. D4 has 339 prompts from a single benchmark, and its "Multilingual" label is a source category, not language identification. Each model was trained with one seed, so the intervals reflect test-set sampling, not training variance.

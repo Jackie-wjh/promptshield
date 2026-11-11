@@ -1,8 +1,6 @@
-﻿matplotlib==3.11.2
+streamlit>=1.55,<2
 pandas==3.1.0
 pyarrow==26.0.1
+numpy==2.5.4
 scikit-learn==1.9.1
-scipy==1.17.1
-torch==2.15.0
-
-
+joblib==1.6.0

@@ -1,0 +1,6 @@
+# Generated datasets and experiment artifacts intentionally preserve the exact
+# line endings emitted by their source tools. Do not flag those bytes as source
+# code whitespace errors during review.
+data/** -whitespace
+results/** -whitespace
+requirements/*.txt -whitespace

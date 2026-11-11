@@ -1,0 +1,378 @@
+{
+  "bootstrap": {
+    "n_boot": 1000,
+    "seed": 6601
+  },
+  "config_sha256": "8d8fe9eefaf33493eb75345f3db3786bfd71dc534c94a67cacd0694b7cf9588d",
+  "data_integrity": {
+    "checks": {
+      "d1_test": {
+        "actual_labels": {
+          "0": 1050,
+          "1": 1051
+        },
+        "actual_rows": 2101,
+        "actual_sha256": "4677f8ce41d1593841109cd5eed46f4c90ba19e84ed8031b6a930d0d3181d017",
+        "manifest_labels": {
+          "0": 1050,
+          "1": 1051
+        },
+        "manifest_rows": 2101,
+        "manifest_sha256": "4677f8ce41d1593841109cd5eed46f4c90ba19e84ed8031b6a930d0d3181d017",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d1_train": {
+        "actual_labels": {
+          "0": 6264,
+          "1": 4782
+        },
+        "actual_rows": 11046,
+        "actual_sha256": "d1106020409855b2dc94682d3d7c68f038c2de0cadd8a32274376fb0e8bca037",
+        "manifest_labels": {
+          "0": 6264,
+          "1": 4782
+        },
+        "manifest_rows": 11046,
+        "manifest_sha256": "d1106020409855b2dc94682d3d7c68f038c2de0cadd8a32274376fb0e8bca037",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d1_validation": {
+        "actual_labels": {
+          "0": 1043,
+          "1": 942
+        },
+        "actual_rows": 1985,
+        "actual_sha256": "01e7de8f932b2a33f87a77a19ff6680825c72f4906bb0801a4c72f2547327f82",
+        "manifest_labels": {
+          "0": 1043,
+          "1": 942
+        },
+        "manifest_rows": 1985,
+        "manifest_sha256": "01e7de8f932b2a33f87a77a19ff6680825c72f4906bb0801a4c72f2547327f82",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d2_test": {
+        "actual_labels": {
+          "0": 56,
+          "1": 60
+        },
+        "actual_rows": 116,
+        "actual_sha256": "a854e06edde9dc917bb9abfba46817e42b372ae1d40b2cc035e693fe7f1ace4b",
+        "manifest_labels": {
+          "0": 56,
+          "1": 60
+        },
+        "manifest_rows": 116,
+        "manifest_sha256": "a854e06edde9dc917bb9abfba46817e42b372ae1d40b2cc035e693fe7f1ace4b",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d3_test": {
+        "actual_labels": {
+          "0": 265,
+          "1": 280
+        },
+        "actual_rows": 545,
+        "actual_sha256": "ad98c776d81d30d68a984d32e2e8005185243ade1651cad70fa870742ef70dff",
+        "manifest_labels": {
+          "0": 265,
+          "1": 280
+        },
+        "manifest_rows": 545,
+        "manifest_sha256": "ad98c776d81d30d68a984d32e2e8005185243ade1651cad70fa870742ef70dff",
+        "sample_id_unique": true,
+        "status": "passed"
+      },
+      "d4_test": {
+        "actual_labels": {
+          "0": 339
+        },
+        "actual_rows": 339,
+        "actual_sha256": "2615eac345ff890f16cce720a1b9e1868a8e38853deb5acfe5a0e32a4d83c791",
+        "manifest_labels": {
+          "0": 339
+        },
+        "manifest_rows": 339,
+        "manifest_sha256": "2615eac345ff890f16cce720a1b9e1868a8e38853deb5acfe5a0e32a4d83c791",
+        "sample_id_unique": true,
+        "status": "passed"
+      }
+    },
+    "manifest_path": "data/audit/manifest.json",
+    "manifest_sha256": "5b31db14e47963ce7309d6b2f032214b3f6652128790386efc6d10d6fa9678ef",
+    "note": "Computed by experiments/e5/common.py because the handoff package does not include scripts/check_data_integrity.py.",
+    "status": "passed"
+  },
+  "data_manifest_sha256": "5b31db14e47963ce7309d6b2f032214b3f6652128790386efc6d10d6fa9678ef",
+  "dataset_revisions": {
+    "d1": "002a9dd18514abd021869823d6b0429b38606d99",
+    "d2": "4f61ecb038e9c3fb77e21034b22511b523772cdd",
+    "d3": "e658d94dcafc133e3a4483f9f9aa13507f3848c4",
+    "d4": "847ae76cf8fea5ed325429e569ae8cfef022d2e0"
+  },
+  "development_overrides": [],
+  "e1_config_sha256": "e4604f40c267b771ccdb392a642d5fe9b97c905d3c6b10d33b7b729d952e678f",
+  "environment": {
+    "joblib": "1.5.3",
+    "matplotlib": "3.11.1",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "platform": "Windows-11-10.0.26200-SP0",
+    "pyarrow": "26.0.1",
+    "python": "3.14.6",
+    "scikit_learn": "1.9.1",
+    "scipy": "1.18.0"
+  },
+  "experiment_id": "e5_typo_augmentation",
+  "features_provenance": "frozen E1 Combined FeatureUnion loaded from models/e1/combined.joblib (e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3)",
+  "figures": {
+    "files": {
+      "fig1_selection.png": "3893e5fde9997a0d5e2745867a8aa8c8711137e92ce9babf1d3fcc388386a0da",
+      "fig2_typo_robustness.png": "dfe6b93623d7075fba8d81a660715d58c0db533dd309a83ce2dedae7a30bb60b",
+      "fig3_bootstrap_deltas.png": "3cbecfca7cf7b79bd2dfec16e557c50283a478c84d67bf73fd661aa5f0bddba9",
+      "fig4_notinject_false_alarms.png": "226cf2bef95972d72211dd8f3dd286bb227c2defb92fe2e5cf8bc8d01e81d8a7",
+      "fig5_mechanism.png": "8414c934336fef4f7b54b039a2ac8afe1910a9d1e46ad7bdad438d8cccceb7ec"
+    },
+    "footer": "threat model: accidental single-character typos in alphabetic words of at least four letters (adjacent swap, deletion, duplication, QWERTY-neighbour substitution; interior letters only)  |  clean 40ff2097e04f  augmented (aug_random_p30_x1) b2ddbcc08ae4",
+    "n_boot": 1000,
+    "skipped": false
+  },
+  "finished_at": "2026-11-08 00:30:08",
+  "frozen_at_utc": "2026-11-07T16:24:26Z",
+  "frozen_e1_model": {
+    "path": "models/e1/combined.joblib",
+    "sha256": "e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3"
+  },
+  "models": {
+    "augmented": {
+      "checkpoint_rev": "b2ddbcc08ae4197be42bfee19eb6c4c1c493a4ec124271963eaebd09cd3b446b",
+      "condition": "aug_random_p30_x1",
+      "model_id": "e5_augmented_combined_tfidf_lr",
+      "model_path": "models/e5/aug_random_p30_x1.joblib"
+    },
+    "clean": {
+      "checkpoint_rev": "40ff2097e04fc62b92c654e410638183dff3b9dd237468633aff5bf27f68e042",
+      "condition": "clean",
+      "model_id": "e5_clean_combined_tfidf_lr",
+      "model_path": "models/e5/clean.joblib"
+    }
+  },
+  "notes": [
+    "Features: frozen E1 Combined FeatureUnion loaded from models/e1/combined.joblib (e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3). Only the Logistic Regression was retrained, with E1's hyperparameters and seed.",
+    "Conditions differ only in the copies appended to D1 Train (none, exact duplicates, or typo-perturbed copies).",
+    "The primary augmented condition was selected on D1 Validation only (clean and five typo-perturbed draws); selected_config.json was frozen before any test split or D4 text was used for scoring (the data gate hashes all six files first).",
+    "Training (6701/6702), selection (6501-6505) and evaluation (6511-6515) perturbation seeds are disjoint; the classifier seed 6405 is E1's.",
+    "Class-1 scores are uncalibrated Logistic Regression predict_proba outputs, not probabilities of maliciousness.",
+    "tF1 and t5 reported here are provisional; E6 owns the authoritative thresholds."
+  ],
+  "official_run": true,
+  "reproduction": {
+    "command": "python experiments/e5/run_e5.py",
+    "main_table_command": "python experiments/e5/build_main_table.py",
+    "qa_command": "python experiments/e5/qa_summary.py --reviewer <name>",
+    "report_command": "python experiments/e5/write_report.py",
+    "verify_command": "python experiments/e5/verify_e5.py"
+  },
+  "score_type": "predict_proba_class_1_uncalibrated",
+  "scores": {
+    "clean_rows": {
+      "e5_augmented_combined_tfidf_lr": {
+        "file": "results/e5/handoff/e5_augmented_combined_tfidf_lr_scores.parquet",
+        "rows": 5086,
+        "schema": [
+          "dataset",
+          "split",
+          "sample_id",
+          "gold",
+          "score_attack",
+          "model_id",
+          "checkpoint_rev",
+          "seed",
+          "transform_id",
+          "parent_id"
+        ],
+        "transform_id": "clean"
+      },
+      "e5_clean_combined_tfidf_lr": {
+        "file": "results/e5/handoff/e5_clean_combined_tfidf_lr_scores.parquet",
+        "rows": 5086,
+        "schema": [
+          "dataset",
+          "split",
+          "sample_id",
+          "gold",
+          "score_attack",
+          "model_id",
+          "checkpoint_rev",
+          "seed",
+          "transform_id",
+          "parent_id"
+        ],
+        "transform_id": "clean"
+      }
+    },
+    "higher_means": "more attack-like",
+    "manifest": {
+      "file": "results/e5/handoff/augmentation_manifest.parquet",
+      "operations_file": "results/e5/augmentation_ops.parquet",
+      "rows": 106668
+    },
+    "predictions": {
+      "files": [
+        "results/e5/predictions/e5_clean_combined_tfidf_lr_predictions.parquet",
+        "results/e5/predictions/e5_augmented_combined_tfidf_lr_predictions.parquet",
+        "results/e5/predictions/e5_paired_predictions.parquet"
+      ],
+      "note": "README section 9 schema with provisional tF1/t5; regenerate from E6's thresholds when they exist",
+      "schema": [
+        "dataset",
+        "split",
+        "sample_id",
+        "gold",
+        "score_attack",
+        "threshold_policy",
+        "threshold",
+        "pred",
+        "model_id",
+        "checkpoint_rev",
+        "seed",
+        "transform_id",
+        "parent_id",
+        "score_type",
+        "threshold_source"
+      ]
+    },
+    "typo_pairs": {
+      "file": "results/e5/handoff/e5_typo_pairs.parquet",
+      "note": "perturbed rows only; sample_id = processed id, parent_id = sample_id, score_attack = perturbed score, score_original = clean-row score; never concatenate with the clean files",
+      "rows": 18888,
+      "transform_ids": [
+        "typo_random1_s6511",
+        "typo_targeted_lexical_s6511"
+      ]
+    }
+  },
+  "selected_condition": "aug_random_p30_x1",
+  "sklearn_warnings_on_load": [
+    "Setting the shape on a NumPy array has been deprecated in NumPy 2.5.\nAs an alternative, you can create a new view using np.reshape (with copy=False if needed).",
+    "Setting the shape on a NumPy array has been deprecated in NumPy 2.5.\nAs an alternative, you can create a new view using np.reshape (with copy=False if needed).",
+    "Setting the shape on a NumPy array has been deprecated in NumPy 2.5.\nAs an alternative, you can create a new view using np.reshape (with copy=False if needed).",
+    "Setting the shape on a NumPy array has been deprecated in NumPy 2.5.\nAs an alternative, you can create a new view using np.reshape (with copy=False if needed).",
+    "Setting the shape on a NumPy array has been deprecated in NumPy 2.5.\nAs an alternative, you can create a new view using np.reshape (with copy=False if needed).",
+    "Setting the shape on a NumPy array has been deprecated in NumPy 2.5.\nAs an alternative, you can create a new view using np.reshape (with copy=False if needed)."
+  ],
+  "status": "complete",
+  "steps": [
+    {
+      "at": "2026-11-08 00:23:24",
+      "elapsed_seconds": 0.0,
+      "step": "data gate: SHA-256, rows and labels of the six processed files"
+    },
+    {
+      "at": "2026-11-08 00:23:24",
+      "elapsed_seconds": 0.2,
+      "step": "frozen features: loading models/e1/combined.joblib"
+    },
+    {
+      "at": "2026-11-08 00:23:25",
+      "elapsed_seconds": 0.89,
+      "step": "lexicon from D1 Train labels (targeted policy, model-agnostic)"
+    },
+    {
+      "at": "2026-11-08 00:23:25",
+      "elapsed_seconds": 1.21,
+      "step": "transforming D1 Train and D1 Validation with the frozen features"
+    },
+    {
+      "at": "2026-11-08 00:23:27",
+      "elapsed_seconds": 2.99,
+      "step": "clean condition: retraining E1's classifier on the frozen features"
+    },
+    {
+      "at": "2026-11-08 00:23:28",
+      "elapsed_seconds": 3.47,
+      "step": "typo-perturbed copies of D1 Validation for selection (five random1 draws + one lexicon-targeted draw)"
+    },
+    {
+      "at": "2026-11-08 00:23:31",
+      "elapsed_seconds": 6.94,
+      "step": "training every condition and scoring it on clean and perturbed D1 Validation"
+    },
+    {
+      "at": "2026-11-08 00:24:06",
+      "elapsed_seconds": 41.88,
+      "step": "pre-registered selection on D1 Validation only"
+    },
+    {
+      "at": "2026-11-08 00:24:06",
+      "elapsed_seconds": 41.94,
+      "step": "saving every condition's model and freezing selected_config.json"
+    },
+    {
+      "at": "2026-11-08 00:24:26",
+      "elapsed_seconds": 62.03,
+      "step": "Phase B: first use of D1/D2/D3 Test and D4 texts for scoring (the data gate only hashed them)"
+    },
+    {
+      "at": "2026-11-08 00:24:28",
+      "elapsed_seconds": 64.1,
+      "step": "post-freeze duplicate-equivalence audit against all six splits"
+    },
+    {
+      "at": "2026-11-08 00:24:33",
+      "elapsed_seconds": 68.86,
+      "step": "provisional thresholds (E1 rule on clean D1 Validation) for every condition"
+    },
+    {
+      "at": "2026-11-08 00:24:35",
+      "elapsed_seconds": 70.47,
+      "step": "scoring all conditions once on every split (secondary evidence) and the two frozen models for the handoff"
+    },
+    {
+      "at": "2026-11-08 00:24:37",
+      "elapsed_seconds": 73.19,
+      "step": "typo-perturbed evaluation copies: canonical draw for the handoff pairs, extra draws for the spread"
+    },
+    {
+      "at": "2026-11-08 00:27:57",
+      "elapsed_seconds": 272.57,
+      "step": "representation change of the training copies per condition"
+    },
+    {
+      "at": "2026-11-08 00:28:51",
+      "elapsed_seconds": 327.45,
+      "step": "paired class-stratified bootstrap (1000 resamples)"
+    },
+    {
+      "at": "2026-11-08 00:29:08",
+      "elapsed_seconds": 343.93,
+      "step": "mechanism: coefficient shifts, branch contribution share, flips by word-branch change"
+    },
+    {
+      "at": "2026-11-08 00:29:08",
+      "elapsed_seconds": 344.34,
+      "step": "latency, selected_models.csv, prediction files, QA sample"
+    },
+    {
+      "at": "2026-11-08 00:29:57",
+      "elapsed_seconds": 392.51,
+      "step": "writing tables, manifests and handoff files"
+    },
+    {
+      "at": "2026-11-08 00:29:59",
+      "elapsed_seconds": 394.5,
+      "step": "rendering figures"
+    },
+    {
+      "at": "2026-11-08 00:30:08",
+      "elapsed_seconds": 404.36,
+      "step": "selected_config.json (final) and run_metadata.json"
+    }
+  ],
+  "threat_model": "accidental single-character typos in alphabetic words of at least four letters (adjacent swap, deletion, duplication, QWERTY-neighbour substitution; interior letters only)",
+  "vectorizer_source": "joblib",
+  "wall_seconds": 404.4
+}

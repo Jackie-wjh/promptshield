@@ -1,0 +1,221 @@
+{
+  "architecture": "DistilBertForSequenceClassification",
+  "batch_accounting": {
+    "effective_batch_size": 16,
+    "gradient_accumulation_steps": 1,
+    "micro_batch_size": 16,
+    "steps_per_epoch": 691
+  },
+  "candidate_grid": [
+    {
+      "dev_macro_f1": 0.9903976417636768,
+      "epoch": 1,
+      "learning_rate": 2e-05,
+      "selected": true
+    },
+    {
+      "dev_macro_f1": 0.9828158482233792,
+      "epoch": 2,
+      "learning_rate": 2e-05,
+      "selected": false
+    },
+    {
+      "dev_macro_f1": 0.977241162653646,
+      "epoch": 3,
+      "learning_rate": 2e-05,
+      "selected": false
+    },
+    {
+      "dev_macro_f1": 0.9853517501178807,
+      "epoch": 1,
+      "learning_rate": 5e-05,
+      "selected": false
+    },
+    {
+      "dev_macro_f1": 0.983820946372754,
+      "epoch": 2,
+      "learning_rate": 5e-05,
+      "selected": false
+    },
+    {
+      "dev_macro_f1": 0.9812918303796018,
+      "epoch": 3,
+      "learning_rate": 5e-05,
+      "selected": false
+    }
+  ],
+  "checkpoint_dir": "models/e3/lr2e-5",
+  "checkpoint_epochs_trained": 3,
+  "checkpoint_rev": "3d87334843a23c0430820056f259883bbb74d23183c52da6fabd62419f93b973",
+  "cost": {
+    "batch1_latency_ms_median": 2.7135999989695847,
+    "batch1_latency_ms_p95": 4.248499993991572,
+    "checkpoint_bytes": 268545194,
+    "inference_peak_vram_mb": 712.8994140625,
+    "n_parameters": 66955010
+  },
+  "dev_metrics_at_0.5": {
+    "dev_attack_recall": 0.9840764331210191,
+    "dev_auroc": 0.9995908421933302,
+    "dev_fpr": 0.003835091083413231,
+    "dev_macro_f1": 0.9903976417636768
+  },
+  "experiment_id": "e3_distilbert_learning_rate",
+  "hub_id": "distilbert/distilbert-base-uncased",
+  "max_length": 256,
+  "model_id": "e3_distilbert_base_uncased",
+  "model_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "provisional_dev_thresholds": {
+    "default_0.5": {
+      "attack_recall": 0.9840764331210191,
+      "auroc": 0.9995908421933302,
+      "fn": 15,
+      "fp": 4,
+      "fpr": 0.003835091083413231,
+      "macro_f1": 0.9903976417636768,
+      "n": 1985,
+      "threshold": 0.5,
+      "tn": 1039,
+      "tp": 927
+    },
+    "t5": {
+      "attack_recall": 1.0,
+      "auroc": 0.9995908421933302,
+      "fn": 0,
+      "fp": 44,
+      "fpr": 0.04218600191754554,
+      "macro_f1": 0.9778154603939673,
+      "n": 1985,
+      "threshold": 0.005979796871542931,
+      "tn": 999,
+      "tp": 942
+    },
+    "tF1": {
+      "attack_recall": 0.9978768577494692,
+      "auroc": 0.9995908421933302,
+      "fn": 2,
+      "fp": 7,
+      "fpr": 0.006711409395973154,
+      "macro_f1": 0.9954553652764468,
+      "n": 1985,
+      "threshold": 0.0376431904733181,
+      "tn": 1036,
+      "tp": 940
+    }
+  },
+  "provisional_threshold_note": "Computed on D1 validation for the demo app only. E6 owns the authoritative tF1 and t5 thresholds.",
+  "seed": 6405,
+  "seed_stability": [
+    {
+      "d1_test_macro_f1": 0.9728546880216951,
+      "dev_attack_recall": 0.9840764331210191,
+      "dev_fpr": 0.003835091083413231,
+      "dev_macro_f1": 0.9903976417636768,
+      "epochs": 1,
+      "learning_rate": 2e-05,
+      "role": "primary",
+      "seed": 6405
+    },
+    {
+      "d1_test_macro_f1": 0.958527974167534,
+      "dev_attack_recall": 0.970276008492569,
+      "dev_fpr": 0.004793863854266539,
+      "dev_macro_f1": 0.9833101859460072,
+      "epochs": 1,
+      "learning_rate": 2e-05,
+      "role": "supplementary_seed",
+      "seed": 6501
+    },
+    {
+      "d1_test_macro_f1": 0.9637876918610979,
+      "dev_attack_recall": 0.9840764331210191,
+      "dev_fpr": 0.0028763183125599234,
+      "dev_macro_f1": 0.9909025078829654,
+      "epochs": 1,
+      "learning_rate": 2e-05,
+      "role": "supplementary_seed",
+      "seed": 6502
+    }
+  ],
+  "selected_checkpoint_epoch": 1,
+  "selected_learning_rate": 2e-05,
+  "selection": {
+    "candidates": "every (learning_rate, epoch) pair of the primary seed",
+    "dataset": "d1_validation",
+    "metric": "macro_f1",
+    "note": "D1 validation only. D1/D2/D3/D4 test scores are produced once, after the checkpoint is frozen.",
+    "threshold": 0.5,
+    "tie_break": [
+      "higher_dev_macro_f1",
+      "earlier_epoch",
+      "smaller_learning_rate"
+    ]
+  },
+  "tokenizer_revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+  "training_hyperparameters": {
+    "adam_betas": [
+      0.9,
+      0.999
+    ],
+    "adam_eps": 1e-08,
+    "deterministic": true,
+    "effective_batch_size": 16,
+    "epochs": 3,
+    "gradient_accumulation_steps": 1,
+    "learning_rates": [
+      2e-05,
+      5e-05
+    ],
+    "loss": "cross_entropy",
+    "lr_schedule": "linear_warmup_then_linear_decay",
+    "max_grad_norm": 1.0,
+    "micro_batch_size": 16,
+    "num_workers": 0,
+    "optimizer": "AdamW",
+    "precision": "fp32",
+    "warmup_ratio": 0.1,
+    "weight_decay": 0.01,
+    "weight_decay_exclusions": [
+      "bias",
+      "LayerNorm.weight"
+    ]
+  },
+  "truncation": {
+    "d1_test": {
+      "n": 2101,
+      "token_max": 36,
+      "truncated_rows": 0,
+      "truncation_rate": 0.0
+    },
+    "d1_train": {
+      "n": 11046,
+      "token_max": 110,
+      "truncated_rows": 0,
+      "truncation_rate": 0.0
+    },
+    "d1_validation": {
+      "n": 1985,
+      "token_max": 40,
+      "truncated_rows": 0,
+      "truncation_rate": 0.0
+    },
+    "d2_test": {
+      "n": 116,
+      "token_max": 211,
+      "truncated_rows": 0,
+      "truncation_rate": 0.0
+    },
+    "d3_test": {
+      "n": 545,
+      "token_max": 85,
+      "truncated_rows": 0,
+      "truncation_rate": 0.0
+    },
+    "d4_test": {
+      "n": 339,
+      "token_max": 57,
+      "truncated_rows": 0,
+      "truncation_rate": 0.0
+    }
+  }
+}

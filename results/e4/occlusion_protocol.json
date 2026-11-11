@@ -1,0 +1,26 @@
+{
+  "case_ids": [
+    "d1:test:000321",
+    "d1:test:000441",
+    "d1:test:000471",
+    "d1:test:000004",
+    "d1:test:000024",
+    "d1:test:000086"
+  ],
+  "case_source": "E2 fixed six-case table, selected before observing E4 predictions",
+  "method": "replace each visible whitespace-delimited word span's BPE token IDs with mask IDs; preserve length and positions",
+  "score_difference": "original score_attack minus masked score_attack",
+  "interpretation": "local sensitivity, not causal attribution",
+  "checkpoint_rev": "d43841dbaa6db09088e77f17f567b966dc5c4642adaac324eead707e5b3a10c3",
+  "precision": "fp32",
+  "time_utc": "2026-11-08T19:30:39.974105+00:00",
+  "case_count": 6,
+  "span_count": 37,
+  "limitations": [
+    "Masking can produce out-of-distribution inputs.",
+    "Spans are tested individually, so interactions are not measured.",
+    "Cases came from the E2 case list; they need not be E4 errors.",
+    "These six selected cases do not represent the test distribution.",
+    "Gold labels and text are re-read from the frozen dataset; E2 interpretations are not copied."
+  ]
+}

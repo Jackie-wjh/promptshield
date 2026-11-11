@@ -1,0 +1,135 @@
+{
+  "experiment_id": "e4_roberta_learning_rate_cost",
+  "status": "verified_complete",
+  "environment": {
+    "python": "3.11.9",
+    "platform": "Windows-10-10.0.22631-SP0",
+    "torch": "2.7.1+cu126",
+    "transformers": "4.46.3",
+    "tokenizers": "0.20.3",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "pyarrow": "18.1.0",
+    "sklearn": "1.5.2",
+    "cuda": "12.6",
+    "cpu_threads": 4,
+    "gpu": "NVIDIA GeForce RTX 3060 Laptop GPU",
+    "total_vram_mib": 6143.5,
+    "cudnn": 90701,
+    "git_base_commit": "031b119918143e8048518b5bb6037d299b283b5f"
+  },
+  "selected_model": {
+    "learning_rate": 2e-05,
+    "epoch": 1,
+    "dev_macro_f1": 0.9863480924391689,
+    "checkpoint_dir": "models/e4/lr2e-5",
+    "checkpoint_rev": "d43841dbaa6db09088e77f17f567b966dc5c4642adaac324eead707e5b3a10c3",
+    "config_sha256": "383a7940e8a8fd014f69b97b68233342de56dcd3d32ff27898fb56cb80abe3be",
+    "selected_learning_rate": 2e-05,
+    "selected_checkpoint_epoch": 1,
+    "model_id": "e4_roberta_base",
+    "hub_id": "FacebookAI/roberta-base",
+    "model_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "tokenizer_revision": "e2da8e2f811d1448a5b465c236feacd80ffbac7b",
+    "seed": 6405,
+    "selection": {
+      "dataset": "d1_validation",
+      "threshold": 0.5,
+      "metric": "macro_f1",
+      "tie_break": [
+        "higher_macro_f1",
+        "earlier_epoch",
+        "smaller_learning_rate"
+      ]
+    },
+    "training": {
+      "learning_rates": [
+        2e-05,
+        5e-05
+      ],
+      "epochs": 3,
+      "micro_batch_size": 16,
+      "effective_batch_size": 16,
+      "precision": "fp32",
+      "gradient_checkpointing": false,
+      "optimizer": "AdamW",
+      "weight_decay": 0.01,
+      "adam_betas": [
+        0.9,
+        0.999
+      ],
+      "adam_eps": 1e-08,
+      "warmup_ratio": 0.1,
+      "max_grad_norm": 1.0,
+      "cpu_threads": 4,
+      "deterministic": true,
+      "num_workers": 0
+    },
+    "candidate_count": 6,
+    "frozen_at_utc": "2026-11-08T19:28:21.660869+00:00",
+    "data_manifest_sha256": "57c78637ad10ce29503152ec22de1d948ce24262c51138c0f78116780b5ffd54",
+    "source_sha256": {
+      "experiments/e4/__init__.py": "700cf4eb01023e5ed3e7c6332a1eba7084cbc7325a7499c7352b6f6fb24242eb",
+      "experiments/e4/common.py": "1030f66b4899a2aad367691c4c80a63f5bb32af099c5de391c727afd32b440ee",
+      "experiments/e4/evaluate.py": "6114fc6a992246c8ea25eee79fa3a7a1aba31425cafe7c1d6d98320c34ed6733",
+      "experiments/e4/figures.py": "d0c541cb3d2a68efec33b4ecd5cc3a03a99ce879efba3e8c31dfc6b545215658",
+      "experiments/e4/predict.py": "ed00d03df7fbdc13a6134c700a3451d2e79df958fdf8cb1ce596b4023f595f3c",
+      "experiments/e4/report.py": "8712086454ccd46d94c1764cf8484a60ad22eb5c2de3887350b42966207f387a",
+      "experiments/e4/train.py": "143dbceebc4d93df012da80198a1c56c26ff29da0ddc3802f0162b94a28b0d6d",
+      "experiments/e4/verify.py": "5c2337bfc678db67bf1c45a5a71e58469e435ef79abf8d006d5e5c1bafddabd7"
+    },
+    "status": "frozen_before_test_scoring",
+    "cost": {
+      "n_parameters": 124647170,
+      "checkpoint_bytes": 503428743,
+      "batch1_latency_ms_median": 10.776900002383627,
+      "batch1_latency_ms_p95": 12.648894984158687,
+      "inference_peak_vram_mb": 510.25048828125,
+      "training_peak_vram_mb": 2634.27490234375,
+      "same_device_comparison": "results/e4/cost_comparison.csv"
+    }
+  },
+  "scores": {
+    "file": "results/e4/handoff/roberta_scores.parquet",
+    "sha256": "8f62599eda9c9b460e9f3ec6c818729701b9c042ead768a3e097ff3bb24f7f2d",
+    "rows": 5086,
+    "schema": [
+      "dataset",
+      "split",
+      "sample_id",
+      "gold",
+      "score_attack",
+      "model_id",
+      "checkpoint_rev",
+      "seed",
+      "transform_id",
+      "parent_id"
+    ],
+    "higher_means": "more attack-like",
+    "score_type": "softmax_class_1_uncalibrated"
+  },
+  "scored_at_utc": "2026-11-08T19:28:56.844092+00:00",
+  "source_sha256": {
+    "experiments/e4/__init__.py": "700cf4eb01023e5ed3e7c6332a1eba7084cbc7325a7499c7352b6f6fb24242eb",
+    "experiments/e4/common.py": "1030f66b4899a2aad367691c4c80a63f5bb32af099c5de391c727afd32b440ee",
+    "experiments/e4/evaluate.py": "3969148fd4dff7390372ce73de93969934bd950f575b3efce6d162c777b7b711",
+    "experiments/e4/figures.py": "099ef7e4a9922828fcb80d2c74125493b6670d7bb3489b641236075ff9c30753",
+    "experiments/e4/predict.py": "ed00d03df7fbdc13a6134c700a3451d2e79df958fdf8cb1ce596b4023f595f3c",
+    "experiments/e4/report.py": "8d3c888f7c0509b7e4e5a6480f92a4e31ac93ed0924f1cd21d3681503354fe66",
+    "experiments/e4/train.py": "143dbceebc4d93df012da80198a1c56c26ff29da0ddc3802f0162b94a28b0d6d",
+    "experiments/e4/verify.py": "5c2337bfc678db67bf1c45a5a71e58469e435ef79abf8d006d5e5c1bafddabd7"
+  },
+  "reproduction": {
+    "train": "python -m experiments.e4.train train",
+    "score": "python -m experiments.e4.evaluate score",
+    "verify": "python -m experiments.e4.verify"
+  },
+  "threshold_owner": "E6; 0.5 metrics are reference-only, not final group results",
+  "verification": {
+    "file": "results/e4/verification.json",
+    "check_count": 76,
+    "status": "passed"
+  },
+  "findings_word_count": 275,
+  "completed_at_utc": "2026-11-08T19:32:49.252833+00:00"
+}

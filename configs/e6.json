@@ -1,0 +1,39 @@
+{
+  "schema_version": 1,
+  "experiment_id": "e6_operating_threshold_selection",
+  "seed": 6405,
+  "inputs": {
+    "glob": "results/e*/handoff/*_scores.parquet",
+    "schema": ["dataset", "split", "sample_id", "gold", "score_attack",
+               "model_id", "checkpoint_rev", "seed", "transform_id", "parent_id"],
+    "required_rows": {"d1_validation": 1985, "d1_test": 2101, "d2_test": 116, "d3_test": 545},
+    "optional_rows": {"d4_test": 339}
+  },
+  "main_pipeline_experiments": ["e1", "e2", "e3", "e4"],
+  "supplementary_experiments": ["e5"],
+  "thresholds": {
+    "selection_data": "d1_validation",
+    "candidates": "unique validation scores plus nextafter(max)",
+    "policies": ["default_0.5", "tF1", "t5"],
+    "tF1_objective": "macro_f1",
+    "tF1_tie_break": "higher_threshold",
+    "t5_max_validation_fpr": 0.05,
+    "t5_objective": "attack_recall",
+    "t5_tie_break": "higher_threshold",
+    "prediction_rule": "score_attack >= threshold"
+  },
+  "evaluation_datasets": ["d1_test", "d2_test", "d3_test"],
+  "benign_stress_dataset": "d4_test",
+  "d4_slices": ["overall", "trigger_count", "category", "multilingual"],
+  "uncertainty": {
+    "rates": "wilson_95",
+    "rates_secondary": "clopper_pearson_95",
+    "macro_f1": "class_stratified_percentile_bootstrap",
+    "bootstrap_resamples": 1000,
+    "bootstrap_seeding": "per row: [seed, crc32('model_id|policy|dataset|split')]"
+  },
+  "report": {
+    "showcase_model_id": "e1_combined_tfidf_lr",
+    "showcase_reason": "baseline shared by E5 and the Streamlit demo; complete D4 scores; shows the tF1/t5 trade-off on every source"
+  }
+}

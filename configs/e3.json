@@ -1,0 +1,86 @@
+{
+  "schema_version": 1,
+  "experiment_id": "e3_distilbert_learning_rate",
+  "owner": "M3 / E3",
+  "research_question": "RQ1: how does a pretrained encoder trade detection quality against cost, and how sensitive is it to the fine-tuning learning rate?",
+  "seed": 6405,
+  "model": {
+    "model_id": "e3_distilbert_base_uncased",
+    "hub_id": "distilbert/distilbert-base-uncased",
+    "revision": "12040accade4e8a0f71eabdb258fecc2e7e948be",
+    "architecture": "DistilBertForSequenceClassification",
+    "num_labels": 2,
+    "max_length": 256,
+    "truncation": "longest_first",
+    "padding": "dynamic_per_batch",
+    "attn_implementation": "sdpa"
+  },
+  "training": {
+    "epochs": 3,
+    "micro_batch_size": 16,
+    "gradient_accumulation_steps": 1,
+    "effective_batch_size": 16,
+    "learning_rates": [2e-05, 5e-05],
+    "optimizer": "AdamW",
+    "weight_decay": 0.01,
+    "weight_decay_exclusions": ["bias", "LayerNorm.weight"],
+    "adam_betas": [0.9, 0.999],
+    "adam_eps": 1e-08,
+    "lr_schedule": "linear_warmup_then_linear_decay",
+    "warmup_ratio": 0.1,
+    "max_grad_norm": 1.0,
+    "precision": "fp32",
+    "deterministic": true,
+    "num_workers": 0,
+    "loss": "cross_entropy"
+  },
+  "selection": {
+    "dataset": "d1_validation",
+    "metric": "macro_f1",
+    "threshold": 0.5,
+    "candidates": "every (learning_rate, epoch) pair of the primary seed",
+    "tie_break": ["higher_dev_macro_f1", "earlier_epoch", "smaller_learning_rate"],
+    "note": "D1 validation only. D1/D2/D3/D4 test scores are produced once, after the checkpoint is frozen."
+  },
+  "seed_stability": {
+    "enabled": true,
+    "seeds": [6405, 6501, 6502],
+    "protocol": "Retrain the frozen learning rate and epoch budget with each seed; the primary seed 6405 stays the reported pipeline. All seeds are reported so the spread is visible; the seed with the best test score is never substituted for the primary model.",
+    "handoff_role": "supplementary evidence only; the E6 handoff scores come from the primary seed"
+  },
+  "evaluation": {
+    "datasets": ["d1_validation", "d1_test", "d2_test", "d3_test", "d4_test"],
+    "expected_rows": {
+      "d1_validation": 1985,
+      "d1_test": 2101,
+      "d2_test": 116,
+      "d3_test": 545,
+      "d4_test": 339
+    },
+    "score_type": "softmax_class_1_uncalibrated",
+    "eval_batch_size": 64,
+    "threshold_policies": ["default_0.5"],
+    "handoff_note": "tF1 and t5 are selected by E6 from the raw D1 validation scores, not here."
+  },
+  "latency": {
+    "device": "cuda",
+    "batch_size": 1,
+    "warmup_trials": 20,
+    "measured_trials": 100,
+    "includes_tokenization": true,
+    "excludes_model_loading": true,
+    "hardware_note": "Single consumer laptop GPU; timings are not comparable to server hardware."
+  },
+  "resources": {
+    "compute_budget": "2 learning rates x 3 epochs = 6 fine-tuning runs, plus 2 extra seeds for the frozen configuration",
+    "planned_gpu_memory_gb": 8
+  },
+  "provenance": {
+    "training_data": "data/processed/d1_train.parquet",
+    "selection_data": "data/processed/d1_validation.parquet",
+    "test_data": ["data/processed/d1_test.parquet", "data/processed/d2_test.parquet", "data/processed/d3_test.parquet"],
+    "benign_stress_data": "data/processed/d4_test.parquet",
+    "manifest": "data/audit/manifest.json",
+    "integrity_report": "data/audit/integrity_report.json"
+  }
+}

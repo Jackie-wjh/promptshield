@@ -1,0 +1,7 @@
+condition,copy_index,seed,policy,rate,transform_id,n_input,n_valid,n_no_eligible_word,n_invalid_unchanged,n_invalid_collision,n_fallback_random,n_attempts_total,n_ops_total
+dup_x1,0,6701,dup,0.0,dup_c0,11046,10997,49,0,0,0,0,0
+aug_random1_x1,0,6701,random1,0.0,typo_random1_s6701_c0,11046,10997,49,0,0,0,10997,10997
+aug_random_p30_x1,0,6701,random_rate,0.3,typo_random_rate_s6701_c0,11046,10997,49,0,0,0,10997,26745
+aug_targeted1_x1,0,6701,targeted_lexical,0.0,typo_targeted_lexical_s6701_c0,11046,10997,49,0,0,1350,10997,10997
+aug_random1_x2,0,6701,random1,0.0,typo_random1_s6701_c0,11046,10997,49,0,0,0,10997,10997
+aug_random1_x2,1,6702,random1,0.0,typo_random1_s6702_c1,11046,10997,49,0,0,0,11151,10997

@@ -1,0 +1,112 @@
+{
+  "config_sha256": "e4604f40c267b771ccdb392a642d5fe9b97c905d3c6b10d33b7b729d952e678f",
+  "data_integrity_status": "passed",
+  "data_manifest_sha256": "5b31db14e47963ce7309d6b2f032214b3f6652128790386efc6d10d6fa9678ef",
+  "environment": {
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.2",
+    "numpy": "2.5.4",
+    "pandas": "3.1.0",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "python": "3.13.15",
+    "scikit_learn": "1.9.1"
+  },
+  "experiment_id": "e1_tfidf_logistic_regression",
+  "experiment_revision": "8f085849b7782900f1a759ba228302ae0a8710502848002f97df24207f11d1d1",
+  "handoff": {
+    "columns": [
+      "dataset",
+      "split",
+      "sample_id",
+      "gold",
+      "score_attack",
+      "model_id",
+      "checkpoint_rev",
+      "seed",
+      "transform_id",
+      "parent_id"
+    ],
+    "datasets": [
+      {
+        "dataset": "d1",
+        "rows": 1985,
+        "split": "validation"
+      },
+      {
+        "dataset": "d1",
+        "rows": 2101,
+        "split": "test"
+      },
+      {
+        "dataset": "d2",
+        "rows": 116,
+        "split": "test"
+      },
+      {
+        "dataset": "d3",
+        "rows": 545,
+        "split": "test"
+      },
+      {
+        "dataset": "d4",
+        "rows": 339,
+        "split": "test"
+      }
+    ],
+    "rows_per_model": 5086
+  },
+  "notes": [
+    "All vocabularies and IDF values were fitted on cleaned D1 train only.",
+    "C was selected on D1 validation Macro F1 at threshold 0.5; ties prefer smaller C.",
+    "E1 threshold calculations are provisional reference outputs; E6 owns final tF1/t5 selection and unified metrics.",
+    "Class-1 scores are uncalibrated Logistic Regression predict_proba outputs.",
+    "Threshold-free scores for D1 validation, D1/D2/D3 test, and D4 test are exported to results/e1/handoff.",
+    "D2, D3, and D4 were used only after model selection."
+  ],
+  "selected_models": [
+    {
+      "batch1_latency_ms_median": 0.14779150023969123,
+      "batch1_latency_ms_p95": 0.1593107505868829,
+      "checkpoint_rev": "eac9dd413689e80a2f75d9cedcc5d2818d0ac2e6e3f6ed5c6a5bc59e2480e2bf",
+      "dev_macro_f1_at_0.5": 0.9772292808123584,
+      "features": 50000,
+      "model_id": "e1_word_tfidf_lr",
+      "model_path": "models/e1/word.joblib",
+      "model_size_bytes": 888080,
+      "pipeline": "word",
+      "selected_C": 1.0
+    },
+    {
+      "batch1_latency_ms_median": 0.1666875000410073,
+      "batch1_latency_ms_p95": 0.20704970038423195,
+      "checkpoint_rev": "c94e7056ed63db5b34e82af062cf703697182458755aae50e5377ceed2376063",
+      "dev_macro_f1_at_0.5": 0.9787543424014091,
+      "features": 50000,
+      "model_id": "e1_char_tfidf_lr",
+      "model_path": "models/e1/char.joblib",
+      "model_size_bytes": 775386,
+      "pipeline": "char",
+      "selected_C": 1.0
+    },
+    {
+      "batch1_latency_ms_median": 0.36647900014941115,
+      "batch1_latency_ms_p95": 0.44254549998186116,
+      "checkpoint_rev": "e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3",
+      "dev_macro_f1_at_0.5": 0.9817917749579574,
+      "features": 100000,
+      "model_id": "e1_combined_tfidf_lr",
+      "model_path": "models/e1/combined.joblib",
+      "model_size_bytes": 1662934,
+      "pipeline": "combined",
+      "selected_C": 1.0
+    }
+  ],
+  "selection_rule": {
+    "dataset": "d1_validation",
+    "metric": "macro_f1",
+    "threshold": 0.5,
+    "tie_break": "smaller_C"
+  },
+  "status": "complete",
+  "threshold_status": "provisional_reference_only"
+}

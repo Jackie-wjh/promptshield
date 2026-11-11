@@ -1,0 +1,3 @@
+model,threshold,n,gold_benign,fp,fpr,fpr_ci_low,fpr_ci_high,note
+E3 DistilBERT,0.5,339,339,227,0.6696165191740413,0.6178918617166238,0.7175401493230473,"Benign-only stress set: F1, recall and AUROC are not defined here and are not reported. E6 owns the authoritative NotInject table, including trigger-count and category slices."
+E1 Combined TF-IDF LR,0.5,339,339,78,0.23008849557522124,0.1884580485558421,0.2777675338766813,"Benign-only stress set: F1, recall and AUROC are not defined here and are not reported. E6 owns the authoritative NotInject table, including trigger-count and category slices."

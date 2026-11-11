@@ -1,0 +1,17 @@
+{
+  "comparisons": [
+    "E3 versus E1 Combined TF-IDF LR (prespecified in the plan, section 7)"
+  ],
+  "design": {
+    "n_boot": 1000,
+    "note": "Both models were scored on identical sample_ids, so each draw is shared. Intervals describe sampling variation on the evaluated sets, not variation across training seeds.",
+    "resampling": "paired, class-stratified (attack and benign strata resampled independently)",
+    "rng_seed": 6405,
+    "threshold": 0.5
+  },
+  "files": {
+    "bootstrap": "results/e3/evidence/bootstrap_e3_vs_e1.csv",
+    "d4_reference": "results/e3/evidence/d4_reference_at_0.5.csv"
+  },
+  "status": "complete"
+}

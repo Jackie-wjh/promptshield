@@ -1,0 +1,304 @@
+{
+  "experiment": "E6 operating threshold selection and false-alarm analysis",
+  "started_utc": "2026-11-10T21:12:25+00:00",
+  "finished_utc": "2026-11-10T21:13:03+00:00",
+  "command": "python experiments/e6/run_e6.py --verify-e1-joblib",
+  "environment": {
+    "python": "3.13.15",
+    "platform": "macOS-26.6.2-arm64-arm-64bit-Mach-O",
+    "pandas": "3.1.0",
+    "numpy": "2.5.4",
+    "scikit-learn": "1.9.1",
+    "scipy": "1.18.1",
+    "matplotlib": "3.11.2"
+  },
+  "protocol": {
+    "selection_data": "D1 Validation rows of each handoff file only (1,985 rows)",
+    "candidates": "every unique validation score plus nextafter(max) (E1 threshold_candidates)",
+    "tF1": "maximise Macro F1; ties -> higher threshold",
+    "t5": "maximise Attack Recall among candidates with validation FPR <= 0.05; ties -> higher threshold",
+    "prediction_rule": "pred = 1 iff score_attack >= threshold",
+    "evaluation": "thresholds frozen before D1/D2/D3 Test and D4 metrics are computed; sources reported separately",
+    "d4": "benign only: FP/N, FPR, Wilson 95% CI (Clopper-Pearson also given); no F1 or AUROC",
+    "uncertainty": "Wilson 95% CI for recall and FPR; class-stratified percentile bootstrap (1000 resamples) for Macro F1, seeded per row with [6405, crc32('model_id|policy|dataset|split')]",
+    "scores": "uncalibrated; not probabilities of maliciousness"
+  },
+  "inputs": [
+    {
+      "experiment": "e1",
+      "path": "results/e1/handoff/char_scores.parquet",
+      "sha256": "fcb1c05740bb72bacffea41df558eebbaa357521d00fb194384c817b23d57461",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e1_char_tfidf_lr",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e1",
+      "path": "results/e1/handoff/combined_scores.parquet",
+      "sha256": "dfd44b840130efa0925a1473534e151e38d0b39a235a4745fee82f66b9e8dcee",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e1_combined_tfidf_lr",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e1",
+      "path": "results/e1/handoff/word_scores.parquet",
+      "sha256": "8c547bf8e8b0c81b3e6bba7477fdf0242a5fde27d51d6e69fc8d4b8a1f16275d",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e1_word_tfidf_lr",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e2",
+      "path": "results/e2/handoff/bilstm_scores.parquet",
+      "sha256": "6732f8830fc42e25347f9b0273481f4c570e93bfe4f1870fa2087e0662374899",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "bilstm_random",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e3",
+      "path": "results/e3/handoff/distilbert_scores.parquet",
+      "sha256": "39a5f10e2c29ac54f0f5eb00f79246841f225996be3a56c971d65253d6e67047",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e3_distilbert_base_uncased",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e4",
+      "path": "results/e4/handoff/roberta_scores.parquet",
+      "sha256": "8f62599eda9c9b460e9f3ec6c818729701b9c042ead768a3e097ff3bb24f7f2d",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e4_roberta_base",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e5",
+      "path": "results/e5/handoff/e5_augmented_combined_tfidf_lr_scores.parquet",
+      "sha256": "8aa2dfa975fbc9d1423547c85ff8e775f14094c8d66548372a5a94af3ffc982c",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e5_augmented_combined_tfidf_lr",
+      "problems": [],
+      "warnings": []
+    },
+    {
+      "experiment": "e5",
+      "path": "results/e5/handoff/e5_clean_combined_tfidf_lr_scores.parquet",
+      "sha256": "7851517894f2be3efa8b574491ea623cdb3a650110cc22ea43ebf6e386e882d1",
+      "rows": 5086,
+      "split_rows": {
+        "d1_test": 2101,
+        "d1_validation": 1985,
+        "d2_test": 116,
+        "d3_test": 545,
+        "d4_test": 339
+      },
+      "model_id": "e5_clean_combined_tfidf_lr",
+      "problems": [],
+      "warnings": []
+    }
+  ],
+  "excluded_inputs": [],
+  "models": {
+    "e1_word_tfidf_lr": {
+      "experiment": "e1",
+      "is_main_pipeline": true,
+      "has_d4": true,
+      "warnings": []
+    },
+    "e1_char_tfidf_lr": {
+      "experiment": "e1",
+      "is_main_pipeline": true,
+      "has_d4": true,
+      "warnings": []
+    },
+    "e1_combined_tfidf_lr": {
+      "experiment": "e1",
+      "is_main_pipeline": true,
+      "has_d4": true,
+      "warnings": []
+    },
+    "bilstm_random": {
+      "experiment": "e2",
+      "is_main_pipeline": true,
+      "has_d4": true,
+      "warnings": []
+    },
+    "e3_distilbert_base_uncased": {
+      "experiment": "e3",
+      "is_main_pipeline": true,
+      "has_d4": true,
+      "warnings": []
+    },
+    "e4_roberta_base": {
+      "experiment": "e4",
+      "is_main_pipeline": true,
+      "has_d4": true,
+      "warnings": []
+    },
+    "e5_clean_combined_tfidf_lr": {
+      "experiment": "e5",
+      "is_main_pipeline": false,
+      "has_d4": true,
+      "warnings": []
+    },
+    "e5_augmented_combined_tfidf_lr": {
+      "experiment": "e5",
+      "is_main_pipeline": false,
+      "has_d4": true,
+      "warnings": []
+    }
+  },
+  "missing_main_experiments": [],
+  "config": {
+    "schema_version": 1,
+    "experiment_id": "e6_operating_threshold_selection",
+    "seed": 6405,
+    "inputs": {
+      "glob": "results/e*/handoff/*_scores.parquet",
+      "schema": [
+        "dataset",
+        "split",
+        "sample_id",
+        "gold",
+        "score_attack",
+        "model_id",
+        "checkpoint_rev",
+        "seed",
+        "transform_id",
+        "parent_id"
+      ],
+      "required_rows": {
+        "d1_validation": 1985,
+        "d1_test": 2101,
+        "d2_test": 116,
+        "d3_test": 545
+      },
+      "optional_rows": {
+        "d4_test": 339
+      }
+    },
+    "main_pipeline_experiments": [
+      "e1",
+      "e2",
+      "e3",
+      "e4"
+    ],
+    "supplementary_experiments": [
+      "e5"
+    ],
+    "thresholds": {
+      "selection_data": "d1_validation",
+      "candidates": "unique validation scores plus nextafter(max)",
+      "policies": [
+        "default_0.5",
+        "tF1",
+        "t5"
+      ],
+      "tF1_objective": "macro_f1",
+      "tF1_tie_break": "higher_threshold",
+      "t5_max_validation_fpr": 0.05,
+      "t5_objective": "attack_recall",
+      "t5_tie_break": "higher_threshold",
+      "prediction_rule": "score_attack >= threshold"
+    },
+    "evaluation_datasets": [
+      "d1_test",
+      "d2_test",
+      "d3_test"
+    ],
+    "benign_stress_dataset": "d4_test",
+    "d4_slices": [
+      "overall",
+      "trigger_count",
+      "category",
+      "multilingual"
+    ],
+    "uncertainty": {
+      "rates": "wilson_95",
+      "rates_secondary": "clopper_pearson_95",
+      "macro_f1": "class_stratified_percentile_bootstrap",
+      "bootstrap_resamples": 1000,
+      "bootstrap_seeding": "per row: [seed, crc32('model_id|policy|dataset|split')]"
+    },
+    "report": {
+      "showcase_model_id": "e1_combined_tfidf_lr",
+      "showcase_reason": "baseline shared by E5 and the Streamlit demo; complete D4 scores; shows the tF1/t5 trade-off on every source"
+    }
+  },
+  "verification": "results/e6/verification.json",
+  "outputs": {
+    "results/e6/case_check.csv": "added2a44ac1aa5d2020057a6b25acb5634a80b8112970a52758a579d8c6e9bd",
+    "results/e6/error_candidates.csv": "226e21fcd71402c07e7e4fde8e2de8a5209fccee897de3795b9f85214a7f2f21",
+    "results/e6/error_candidates_summary.csv": "38b9c96740e42295bdf0a100aca8d126d9fd538dc23aa5343693b3f9ea3386b8",
+    "results/e6/findings_and_limitations.md": "b8c346dae795270a0f73fa6c206e7afb774fad35242bacdd4341908d2451fa6c",
+    "results/e6/metrics.csv": "04be1817d45013ffedacf93f269509e1afdc3c5331396500073da21004debf63",
+    "results/e6/notinject_false_alarms.csv": "77173927333c14203714819df0be5826e0a3fcbd8ab365468ca6bb406f4645ba",
+    "results/e6/predictions.parquet": "9d5f1063f1e5f09501461a55266bd1b026f160636051a5ccb6b0762e11a9be4c",
+    "results/e6/report_section.md": "52b484b460473ca848f1f5a1f3adc7977ab24cca1236bd81f5334e32447c6e32",
+    "results/e6/summary.md": "6a4470cb738c2b05853466ff7c2a2848c4f2c550902738eeb8068f68867796ba",
+    "results/e6/supplementary/d3_by_attack_family.csv": "d635e87b16ce2d4b87af78cb76b20972ac346d6988281166019f2f538ca8e897",
+    "results/e6/supplementary/validation_threshold_sweep.csv": "6a3020f2273f7328996c01276070d97a5c19a732bcccdb5b3fc33bbd85ad5728",
+    "results/e6/thresholds.csv": "26f44f4e19ed1c52646ace131408c84b33758838e0141b65bf8ad56f98011e5f"
+  },
+  "figures": {
+    "results/e6/figures/fig1_validation_tradeoff.png": "c92c44448c409c5cb423676fb49e9ccd875e8c8d369ecba57649e7d91746ce14",
+    "results/e6/figures/fig2_cross_source_operating_points.png": "1f1dcd67cdfadaf609f2034d60ef53fdd4855acad8b8e996745ef601bc583cb2",
+    "results/e6/figures/fig3_notinject_false_alarms.png": "59ad1272cd5bc62207bd8495211b2958cbd06ee9f688434dbe4c1473f33ac924"
+  }
+}

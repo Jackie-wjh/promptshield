@@ -1,0 +1,50 @@
+{
+  "schema_version": 2,
+  "policy": "Git tracks the selected lightweight E1, E2 and E5 checkpoints. E3 and E4 fine-tuned Transformer weights are documented but omitted because they exceed GitHub's regular per-file limit.",
+  "files": [
+    {
+      "path": "models/e1/char.joblib",
+      "bytes": 775386,
+      "sha256": "c94e7056ed63db5b34e82af062cf703697182458755aae50e5377ceed2376063"
+    },
+    {
+      "path": "models/e1/combined.joblib",
+      "bytes": 1662934,
+      "sha256": "e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3"
+    },
+    {
+      "path": "models/e1/word.joblib",
+      "bytes": 888080,
+      "sha256": "eac9dd413689e80a2f75d9cedcc5d2818d0ac2e6e3f6ed5c6a5bc59e2480e2bf"
+    },
+    {
+      "path": "models/e2/bilstm_random_best.pt",
+      "bytes": 4895165,
+      "sha256": "6ec73987d1c64bedbd75cc3dfb5a734751f11900eb5818b6851cdb5e943f9cdd"
+    },
+    {
+      "path": "models/e5/aug_random_p30_x1.joblib",
+      "bytes": 1659763,
+      "sha256": "b2ddbcc08ae4197be42bfee19eb6c4c1c493a4ec124271963eaebd09cd3b446b"
+    },
+    {
+      "path": "models/e5/clean.joblib",
+      "bytes": 1617025,
+      "sha256": "40ff2097e04fc62b92c654e410638183dff3b9dd237468633aff5bf27f68e042"
+    }
+  ],
+  "excluded_large_checkpoints": [
+    {
+      "path": "models/e3/lr2e-5/model.safetensors",
+      "bytes": 267832560,
+      "sha256": "3d87334843a23c0430820056f259883bbb74d23183c52da6fabd62419f93b973",
+      "reproduce": "python experiments/e3/run_e3.py"
+    },
+    {
+      "path": "models/e4/lr2e-5/model.safetensors",
+      "bytes": 498612824,
+      "sha256": "d43841dbaa6db09088e77f17f567b966dc5c4642adaac324eead707e5b3a10c3",
+      "reproduce": "python -m experiments.e4.train"
+    }
+  ]
+}

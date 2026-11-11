@@ -1,0 +1,826 @@
+{
+  "augmentation_summary": [
+    {
+      "condition": "dup_x1",
+      "copy_index": 0,
+      "n_attempts_total": 0,
+      "n_fallback_random": 0,
+      "n_input": 11046,
+      "n_invalid_collision": 0,
+      "n_invalid_unchanged": 0,
+      "n_no_eligible_word": 49,
+      "n_ops_total": 0,
+      "n_valid": 10997,
+      "policy": "dup",
+      "rate": 0.0,
+      "seed": 6701,
+      "transform_id": "dup_c0"
+    },
+    {
+      "condition": "aug_random1_x1",
+      "copy_index": 0,
+      "n_attempts_total": 10997,
+      "n_fallback_random": 0,
+      "n_input": 11046,
+      "n_invalid_collision": 0,
+      "n_invalid_unchanged": 0,
+      "n_no_eligible_word": 49,
+      "n_ops_total": 10997,
+      "n_valid": 10997,
+      "policy": "random1",
+      "rate": 0.0,
+      "seed": 6701,
+      "transform_id": "typo_random1_s6701_c0"
+    },
+    {
+      "condition": "aug_random_p30_x1",
+      "copy_index": 0,
+      "n_attempts_total": 10997,
+      "n_fallback_random": 0,
+      "n_input": 11046,
+      "n_invalid_collision": 0,
+      "n_invalid_unchanged": 0,
+      "n_no_eligible_word": 49,
+      "n_ops_total": 26745,
+      "n_valid": 10997,
+      "policy": "random_rate",
+      "rate": 0.3,
+      "seed": 6701,
+      "transform_id": "typo_random_rate_s6701_c0"
+    },
+    {
+      "condition": "aug_targeted1_x1",
+      "copy_index": 0,
+      "n_attempts_total": 10997,
+      "n_fallback_random": 1350,
+      "n_input": 11046,
+      "n_invalid_collision": 0,
+      "n_invalid_unchanged": 0,
+      "n_no_eligible_word": 49,
+      "n_ops_total": 10997,
+      "n_valid": 10997,
+      "policy": "targeted_lexical",
+      "rate": 0.0,
+      "seed": 6701,
+      "transform_id": "typo_targeted_lexical_s6701_c0"
+    },
+    {
+      "condition": "aug_random1_x2",
+      "copy_index": 0,
+      "n_attempts_total": 10997,
+      "n_fallback_random": 0,
+      "n_input": 11046,
+      "n_invalid_collision": 0,
+      "n_invalid_unchanged": 0,
+      "n_no_eligible_word": 49,
+      "n_ops_total": 10997,
+      "n_valid": 10997,
+      "policy": "random1",
+      "rate": 0.0,
+      "seed": 6701,
+      "transform_id": "typo_random1_s6701_c0"
+    },
+    {
+      "condition": "aug_random1_x2",
+      "copy_index": 1,
+      "n_attempts_total": 11151,
+      "n_fallback_random": 0,
+      "n_input": 11046,
+      "n_invalid_collision": 0,
+      "n_invalid_unchanged": 0,
+      "n_no_eligible_word": 49,
+      "n_ops_total": 10997,
+      "n_valid": 10997,
+      "policy": "random1",
+      "rate": 0.0,
+      "seed": 6702,
+      "transform_id": "typo_random1_s6702_c1"
+    }
+  ],
+  "classifier": {
+    "C": 1.0,
+    "class_weight": null,
+    "l1_ratio": 0.0,
+    "max_iter": 1000,
+    "random_state": 6405,
+    "solver": "liblinear"
+  },
+  "clean_reproduction_full": {
+    "max_abs_diff_all_5086_rows": 1.3495426998133553e-11,
+    "prediction_flips_at_0.5": 0
+  },
+  "clean_reproduction_gate_validation": {
+    "max_abs_diff_validation": 1.3326895142995454e-11,
+    "passed": true,
+    "prediction_flips_at_0.5_validation": 0
+  },
+  "conditions": [
+    {
+      "checkpoint_rev": "40ff2097e04fc62b92c654e410638183dff3b9dd237468633aff5bf27f68e042",
+      "coef_sha256": "eebd0398cdd187b791e9d201f97aabd5e203b37140473ef93f994acc05c4713d",
+      "control": true,
+      "copies": 0,
+      "description": "D1 Train as released (11,046 rows)",
+      "fit_seconds": 0.38259150000521913,
+      "intercept": -1.0975913739029743,
+      "intercept_sha256": "0eb7c6813aabca505aff44bc4c5b889d70af75fa97ce92977305cdce179593df",
+      "model_path": "models/e5/clean.joblib",
+      "n_iter": 6,
+      "n_training_rows": 11046,
+      "name": "clean",
+      "policy": null,
+      "rate": 0.0,
+      "w_norm_char": 31.02120111359153,
+      "w_norm_total": 40.25593003394743,
+      "w_norm_word": 25.6558957038763
+    },
+    {
+      "checkpoint_rev": "3cfcbba770e7c7c21a0c0efa35568b2ebf3ebae18f71b6cce070b8b8da990928",
+      "coef_sha256": "4572c00c797e4ab6c0df8a82ac0bf30252f91e14bc27917a696efabd5c2833b6",
+      "control": true,
+      "copies": 1,
+      "description": "count-matched control: originals + one exact duplicate of every eligible text (same parent set as aug_random1_x1); never eligible as primary",
+      "fit_seconds": 2.2065672000026098,
+      "intercept": -1.283512588757747,
+      "intercept_sha256": "444f9c5176b26bde41e6fff0cdf4be3a1df48aaa879e5745ba546e2ac5717528",
+      "model_path": "models/e5/dup_x1.joblib",
+      "n_iter": 6,
+      "n_training_rows": 22043,
+      "name": "dup_x1",
+      "policy": "dup",
+      "rate": 0.0,
+      "w_norm_char": 39.03776828706608,
+      "w_norm_total": 51.472461330823656,
+      "w_norm_word": 33.54797941185839
+    },
+    {
+      "checkpoint_rev": "372fd632f49971796512047921c7a915c11bab3b0072c3d88f85a7bbd5e88e27",
+      "coef_sha256": "99db8df24762cf1d130d7ec1f8131e8e60df81ced5d4f610b644f4e83e6c45eb",
+      "control": false,
+      "copies": 1,
+      "description": "originals + one copy per eligible text with exactly one typo in a uniformly random eligible word",
+      "fit_seconds": 0.7598550999973668,
+      "intercept": -1.1641022438076998,
+      "intercept_sha256": "f9f5d11c4d0a75611f59be685b152f7e94cdc0c5629f0bfa44db6984c07915c2",
+      "model_path": "models/e5/aug_random1_x1.joblib",
+      "n_iter": 6,
+      "n_training_rows": 22043,
+      "name": "aug_random1_x1",
+      "policy": "random1",
+      "rate": 0.0,
+      "w_norm_char": 39.62843103342295,
+      "w_norm_total": 51.8468947367487,
+      "w_norm_word": 33.43184032733977
+    },
+    {
+      "checkpoint_rev": "b2ddbcc08ae4197be42bfee19eb6c4c1c493a4ec124271963eaebd09cd3b446b",
+      "coef_sha256": "615aefe7345d6a6519376faf13f699829d3af0d503fbbb99f59240f90f3c97f2",
+      "control": false,
+      "copies": 1,
+      "description": "originals + one copy with typos in ceil(0.30 x eligible words) distinct words, at least one",
+      "fit_seconds": 0.7548722000065027,
+      "intercept": -1.149313674780858,
+      "intercept_sha256": "363b1bdb68d2ed10c5e41a1177b5b7d0791f834fde961051a8c141823f9fb0c1",
+      "model_path": "models/e5/aug_random_p30_x1.joblib",
+      "n_iter": 6,
+      "n_training_rows": 22043,
+      "name": "aug_random_p30_x1",
+      "policy": "random_rate",
+      "rate": 0.3,
+      "w_norm_char": 40.47356713573801,
+      "w_norm_total": 52.30558255622189,
+      "w_norm_word": 33.132526765320094
+    },
+    {
+      "checkpoint_rev": "29fddd2a705cad50e2ddfe2fc766a7eeed8e6d86fb1222f49568eac087f1d791",
+      "coef_sha256": "1fecf1a34a82cdf827dd1b0a307a0bc20da1de664210135ce60c08597d827f88",
+      "control": false,
+      "copies": 1,
+      "description": "originals + one copy with one typo in the lexicon word of the text's own class (attack texts: attack-indicative word; benign texts: benign-indicative word)",
+      "fit_seconds": 0.7818536999984644,
+      "intercept": -1.182282853299155,
+      "intercept_sha256": "e1a674456d6b2fd47489fea33a51be1808c0d6de8baee9beaff33bbcea140d73",
+      "model_path": "models/e5/aug_targeted1_x1.joblib",
+      "n_iter": 6,
+      "n_training_rows": 22043,
+      "name": "aug_targeted1_x1",
+      "policy": "targeted_lexical",
+      "rate": 0.0,
+      "w_norm_char": 41.582396967350086,
+      "w_norm_total": 53.56238454049713,
+      "w_norm_word": 33.7614173297538
+    },
+    {
+      "checkpoint_rev": "4e0c0f9aa7ba976ac54ec76da7848d8251009620afeb43926ad42e3d08109cd4",
+      "coef_sha256": "5498708e95e63eecdcd74e7339347a66ab5a177ff983fb5dab0a07b252be938a",
+      "control": false,
+      "copies": 2,
+      "description": "originals + two independently seeded random1 copies; copy 0 is identical to aug_random1_x1 (nested contrast)",
+      "fit_seconds": 1.1526753999933135,
+      "intercept": -1.1893925110588084,
+      "intercept_sha256": "2cf4be5972dc5095339c297b9191eeb5241ab0c9f429c3954419ce9bcc103b0e",
+      "model_path": "models/e5/aug_random1_x2.joblib",
+      "n_iter": 6,
+      "n_training_rows": 33040,
+      "name": "aug_random1_x2",
+      "policy": "random1",
+      "rate": 0.0,
+      "w_norm_char": 45.34855010102863,
+      "w_norm_total": 59.64935206578208,
+      "w_norm_word": 38.7498929753634
+    }
+  ],
+  "d4_slice_columns": [
+    "trigger_count",
+    "category"
+  ],
+  "development_overrides": [],
+  "duplicate_equivalence_total_collisions": 0,
+  "evaluation_perturbation": {
+    "canonical_seed": 6511,
+    "extra_seeds": [
+      6512,
+      6513,
+      6514,
+      6515
+    ],
+    "policies": [
+      "random1",
+      "targeted_lexical"
+    ],
+    "splits": [
+      "d1_validation",
+      "d1_test",
+      "d2_test",
+      "d3_test"
+    ]
+  },
+  "experiment_id": "e5_typo_augmentation",
+  "features_provenance": "frozen E1 Combined FeatureUnion loaded from models/e1/combined.joblib (e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3)",
+  "frozen": true,
+  "frozen_at_utc": "2026-11-07T16:24:26Z",
+  "frozen_e1_model": {
+    "expected_sha256_from_selected_models": "e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3",
+    "path": "models/e1/combined.joblib",
+    "sha256": "e171ba886eced0e8347510e6212d39cacd39509bf2cadce8de227d05ad5fc2b3"
+  },
+  "frozen_feature_fingerprint": {
+    "char": {
+      "analyzer": "char",
+      "idf_sha256": "650552d36729ccd775a3f15085c64d5d68ebac919cd647a2e880d9c85105782b",
+      "n_features": 50000,
+      "ngram_range": [
+        3,
+        5
+      ],
+      "vocabulary_sha256": "f297a023363a8e7b7f2b8beb39ad632f9ef22e27169d7daef42c76b9ee9c02fd"
+    },
+    "total_features": 100000,
+    "word": {
+      "analyzer": "word",
+      "idf_sha256": "9209160287d2c80bf2e061c18e9f45ea58b9f671a40007d625a58621706c1ad0",
+      "n_features": 50000,
+      "ngram_range": [
+        1,
+        2
+      ],
+      "vocabulary_sha256": "f26a97ea3f368eabc552bbe5c7e31fc6e11ab347d56e86ac887b4be31b196f64"
+    }
+  },
+  "frozen_features_unchanged_after_training": true,
+  "frozen_models": {
+    "augmented": {
+      "checkpoint_rev": "b2ddbcc08ae4197be42bfee19eb6c4c1c493a4ec124271963eaebd09cd3b446b",
+      "condition": "aug_random_p30_x1",
+      "model_id": "e5_augmented_combined_tfidf_lr",
+      "model_path": "models/e5/aug_random_p30_x1.joblib"
+    },
+    "clean": {
+      "checkpoint_rev": "40ff2097e04fc62b92c654e410638183dff3b9dd237468633aff5bf27f68e042",
+      "condition": "clean",
+      "model_id": "e5_clean_combined_tfidf_lr",
+      "model_path": "models/e5/clean.joblib"
+    }
+  },
+  "latency": {
+    "augmented": {
+      "batch1_latency_ms_median": 5.8142499983659945,
+      "batch1_latency_ms_p95": 7.9569499954232015,
+      "batch_size": 1,
+      "includes_vectorization": true,
+      "measured_samples": 100,
+      "texts": "d1_test",
+      "warmup_samples": 10
+    },
+    "clean": {
+      "batch1_latency_ms_median": 5.490000003192108,
+      "batch1_latency_ms_p95": 7.374265001999447,
+      "batch_size": 1,
+      "includes_vectorization": true,
+      "measured_samples": 100,
+      "texts": "d1_test",
+      "warmup_samples": 10
+    }
+  },
+  "lexicon": {
+    "candidate_words": 572,
+    "chosen_k": 200,
+    "coverage_by_k": [
+      {
+        "attack_coverage": 0.711810690893725,
+        "benign_coverage": 0.26229246487867175,
+        "k": 50
+      },
+      {
+        "attack_coverage": 0.8592858652017747,
+        "benign_coverage": 0.4982439335887612,
+        "k": 100
+      },
+      {
+        "attack_coverage": 0.9300654975702515,
+        "benign_coverage": 0.7567049808429118,
+        "k": 150
+      },
+      {
+        "attack_coverage": 0.9604901753644622,
+        "benign_coverage": 0.8143358876117497,
+        "k": 200
+      },
+      {
+        "attack_coverage": 0.9830974012254384,
+        "benign_coverage": 0.9022988505747126,
+        "k": 300
+      },
+      {
+        "attack_coverage": 0.9858440735263047,
+        "benign_coverage": 0.936941251596424,
+        "k": 400
+      }
+    ],
+    "coverage_target": 0.8,
+    "coverage_target_met": true,
+    "df_min": 20,
+    "k_capped_to_half_of_candidates": false,
+    "k_rule": "the smallest candidate k whose top-k attack words occur in at least coverage_target of the eligible attack texts of D1 Train AND whose top-k benign words occur in at least coverage_target of the eligible benign texts; otherwise the largest candidate (recorded as target not met). k is capped at half the number of candidate words so the two class lists never overlap. A training-only statistic, fixed before any model is scored.",
+    "n_attack_texts_eligible": 4733,
+    "n_attack_words": 200,
+    "n_benign_texts_eligible": 6264,
+    "n_benign_words": 200,
+    "output": "results/e5/lexicon.csv",
+    "policy": "attack texts receive the typo in the present attack-indicative word with the largest |log-odds| (first occurrence); benign texts in the benign-indicative word; random1 fallback is recorded",
+    "score": "log((df_attack + 1) / (n_attack + 2)) - log((df_benign + 1) / (n_benign + 2))",
+    "source": "D1 Train labels only, eligible-shaped lower-cased unigrams",
+    "top_k_candidates": [
+      50,
+      100,
+      150,
+      200,
+      300,
+      400
+    ]
+  },
+  "official_run": true,
+  "provisional_threshold_note": "E5 provisional: tF1/t5 selected per model on clean D1 Validation with E1's rule; E6 owns the authoritative thresholds",
+  "provisional_thresholds": {
+    "e5_augmented_combined_tfidf_lr": {
+      "default_0.5": {
+        "attack_recall": 0.9777070063694268,
+        "auroc": 0.9984020453819111,
+        "fn": 21,
+        "fp": 10,
+        "fpr": 0.009587727708533078,
+        "macro_f1": 0.9843329944565253,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1033,
+        "tp": 921
+      },
+      "t5": {
+        "attack_recall": 0.9957537154989384,
+        "auroc": 0.9984020453819111,
+        "fn": 4,
+        "fp": 47,
+        "fpr": 0.045062320230105465,
+        "macro_f1": 0.9742853506892928,
+        "n": 1985,
+        "threshold": 0.27458259750314196,
+        "tn": 996,
+        "tp": 938
+      },
+      "tF1": {
+        "attack_recall": 0.9872611464968153,
+        "auroc": 0.9984020453819111,
+        "fn": 12,
+        "fp": 18,
+        "fpr": 0.01725790987535954,
+        "macro_f1": 0.9848519536019535,
+        "n": 1985,
+        "threshold": 0.4015169122990403,
+        "tn": 1025,
+        "tp": 930
+      }
+    },
+    "e5_clean_combined_tfidf_lr": {
+      "default_0.5": {
+        "attack_recall": 0.9681528662420382,
+        "auroc": 0.998410187825825,
+        "fn": 30,
+        "fp": 6,
+        "fpr": 0.005752636625119847,
+        "macro_f1": 0.9817917749579574,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1037,
+        "tp": 912
+      },
+      "t5": {
+        "attack_recall": 0.9957537154989384,
+        "auroc": 0.998410187825825,
+        "fn": 4,
+        "fp": 46,
+        "fpr": 0.04410354745925216,
+        "macro_f1": 0.9747888102452179,
+        "n": 1985,
+        "threshold": 0.2648405269035843,
+        "tn": 997,
+        "tp": 938
+      },
+      "tF1": {
+        "attack_recall": 0.9798301486199575,
+        "auroc": 0.998410187825825,
+        "fn": 19,
+        "fp": 12,
+        "fpr": 0.011505273250239693,
+        "macro_f1": 0.984336503875083,
+        "n": 1985,
+        "threshold": 0.4239199754335021,
+        "tn": 1031,
+        "tp": 923
+      }
+    }
+  },
+  "provisional_thresholds_by_condition": {
+    "aug_random1_x1": {
+      "default_0.5": {
+        "attack_recall": 0.9723991507430998,
+        "auroc": 0.9983715112172342,
+        "fn": 26,
+        "fp": 11,
+        "fpr": 0.010546500479386385,
+        "macro_f1": 0.9812963278461249,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1032,
+        "tp": 916
+      },
+      "t5": {
+        "attack_recall": 0.994692144373673,
+        "auroc": 0.9983715112172342,
+        "fn": 5,
+        "fp": 46,
+        "fpr": 0.04410354745925216,
+        "macro_f1": 0.9742838091004351,
+        "n": 1985,
+        "threshold": 0.26659230225153935,
+        "tn": 997,
+        "tp": 937
+      },
+      "tF1": {
+        "attack_recall": 0.9851380042462845,
+        "auroc": 0.9983715112172342,
+        "fn": 14,
+        "fp": 18,
+        "fpr": 0.01725790987535954,
+        "macro_f1": 0.983840505381071,
+        "n": 1985,
+        "threshold": 0.3917352030952965,
+        "tn": 1025,
+        "tp": 928
+      }
+    },
+    "aug_random1_x2": {
+      "default_0.5": {
+        "attack_recall": 0.9745222929936306,
+        "auroc": 0.9982921223890744,
+        "fn": 24,
+        "fp": 12,
+        "fpr": 0.011505273250239693,
+        "macro_f1": 0.9818050157659308,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1031,
+        "tp": 918
+      },
+      "t5": {
+        "attack_recall": 0.994692144373673,
+        "auroc": 0.9982921223890744,
+        "fn": 5,
+        "fp": 41,
+        "fpr": 0.039309683604985615,
+        "macro_f1": 0.9768013211382114,
+        "n": 1985,
+        "threshold": 0.2708373893831706,
+        "tn": 1002,
+        "tp": 937
+      },
+      "tF1": {
+        "attack_recall": 0.9872611464968153,
+        "auroc": 0.9982921223890744,
+        "fn": 12,
+        "fp": 20,
+        "fpr": 0.019175455417066157,
+        "macro_f1": 0.9838436291197219,
+        "n": 1985,
+        "threshold": 0.36312683289997255,
+        "tn": 1023,
+        "tp": 930
+      }
+    },
+    "aug_random_p30_x1": {
+      "default_0.5": {
+        "attack_recall": 0.9777070063694268,
+        "auroc": 0.9984020453819111,
+        "fn": 21,
+        "fp": 10,
+        "fpr": 0.009587727708533078,
+        "macro_f1": 0.9843329944565253,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1033,
+        "tp": 921
+      },
+      "t5": {
+        "attack_recall": 0.9957537154989384,
+        "auroc": 0.9984020453819111,
+        "fn": 4,
+        "fp": 47,
+        "fpr": 0.045062320230105465,
+        "macro_f1": 0.9742853506892928,
+        "n": 1985,
+        "threshold": 0.27458259750314196,
+        "tn": 996,
+        "tp": 938
+      },
+      "tF1": {
+        "attack_recall": 0.9872611464968153,
+        "auroc": 0.9984020453819111,
+        "fn": 12,
+        "fp": 18,
+        "fpr": 0.01725790987535954,
+        "macro_f1": 0.9848519536019535,
+        "n": 1985,
+        "threshold": 0.4015169122990403,
+        "tn": 1025,
+        "tp": 930
+      }
+    },
+    "aug_targeted1_x1": {
+      "default_0.5": {
+        "attack_recall": 0.9692144373673036,
+        "auroc": 0.9974880560525838,
+        "fn": 29,
+        "fp": 14,
+        "fpr": 0.013422818791946308,
+        "macro_f1": 0.9782632999292803,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1029,
+        "tp": 913
+      },
+      "t5": {
+        "attack_recall": 0.9893842887473461,
+        "auroc": 0.9974880560525838,
+        "fn": 10,
+        "fp": 41,
+        "fpr": 0.039309683604985615,
+        "macro_f1": 0.9742753139829621,
+        "n": 1985,
+        "threshold": 0.3296268697558105,
+        "tn": 1002,
+        "tp": 932
+      },
+      "tF1": {
+        "attack_recall": 0.9766454352441614,
+        "auroc": 0.9974880560525838,
+        "fn": 22,
+        "fp": 17,
+        "fpr": 0.016299137104506232,
+        "macro_f1": 0.9802964579437611,
+        "n": 1985,
+        "threshold": 0.4681166918858633,
+        "tn": 1026,
+        "tp": 920
+      }
+    },
+    "clean": {
+      "default_0.5": {
+        "attack_recall": 0.9681528662420382,
+        "auroc": 0.998410187825825,
+        "fn": 30,
+        "fp": 6,
+        "fpr": 0.005752636625119847,
+        "macro_f1": 0.9817917749579574,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1037,
+        "tp": 912
+      },
+      "t5": {
+        "attack_recall": 0.9957537154989384,
+        "auroc": 0.998410187825825,
+        "fn": 4,
+        "fp": 46,
+        "fpr": 0.04410354745925216,
+        "macro_f1": 0.9747888102452179,
+        "n": 1985,
+        "threshold": 0.2648405269035843,
+        "tn": 997,
+        "tp": 938
+      },
+      "tF1": {
+        "attack_recall": 0.9798301486199575,
+        "auroc": 0.998410187825825,
+        "fn": 19,
+        "fp": 12,
+        "fpr": 0.011505273250239693,
+        "macro_f1": 0.984336503875083,
+        "n": 1985,
+        "threshold": 0.4239199754335021,
+        "tn": 1031,
+        "tp": 923
+      }
+    },
+    "dup_x1": {
+      "default_0.5": {
+        "attack_recall": 0.9670912951167728,
+        "auroc": 0.998254463585973,
+        "fn": 31,
+        "fp": 10,
+        "fpr": 0.009587727708533078,
+        "macro_f1": 0.9792667694348083,
+        "n": 1985,
+        "threshold": 0.5,
+        "tn": 1033,
+        "tp": 911
+      },
+      "t5": {
+        "attack_recall": 0.9957537154989384,
+        "auroc": 0.998254463585973,
+        "fn": 4,
+        "fp": 49,
+        "fpr": 0.04697986577181208,
+        "macro_f1": 0.9732784806236283,
+        "n": 1985,
+        "threshold": 0.2378728196592531,
+        "tn": 994,
+        "tp": 938
+      },
+      "tF1": {
+        "attack_recall": 0.9830148619957537,
+        "auroc": 0.998254463585973,
+        "fn": 16,
+        "fp": 18,
+        "fpr": 0.01725790987535954,
+        "macro_f1": 0.9828288245746515,
+        "n": 1985,
+        "threshold": 0.37099057645928113,
+        "tn": 1025,
+        "tp": 926
+      }
+    }
+  },
+  "score_type": "predict_proba_class_1_uncalibrated",
+  "seeds": {
+    "augment_eval_canonical": 6511,
+    "augment_eval_extra": [
+      6512,
+      6513,
+      6514,
+      6515
+    ],
+    "augment_select": [
+      6501,
+      6502,
+      6503,
+      6504,
+      6505
+    ],
+    "augment_train_copies": [
+      6701,
+      6702
+    ],
+    "bootstrap": 6601,
+    "classifier": 6405,
+    "delta_se": 6602,
+    "note": "Single source of truth for every seed. Training, selection and evaluation perturbation seeds are disjoint; the classifier seed must equal configs/e1.json seed and must not change.",
+    "qa_sample": 6603
+  },
+  "selection": {
+    "candidates": [
+      {
+        "clean_val_macro_f1": 0.9812963278461249,
+        "clean_val_macro_f1_eligible": 0.9821878724831712,
+        "condition": "aug_random1_x1",
+        "copies": 1,
+        "pert_val_macro_f1_mean": 0.9747284088476389,
+        "pert_val_macro_f1_sd": 0.0018612047625006206,
+        "policy": "random1",
+        "rate": 0.0,
+        "satisfies_guard": true
+      },
+      {
+        "clean_val_macro_f1": 0.9843329944565253,
+        "clean_val_macro_f1_eligible": 0.9852451554922902,
+        "condition": "aug_random_p30_x1",
+        "copies": 1,
+        "pert_val_macro_f1_mean": 0.977894107346277,
+        "pert_val_macro_f1_sd": 0.0015558600129770021,
+        "policy": "random_rate",
+        "rate": 0.3,
+        "satisfies_guard": true
+      },
+      {
+        "clean_val_macro_f1": 0.9782632999292803,
+        "clean_val_macro_f1_eligible": 0.9791343649088577,
+        "condition": "aug_targeted1_x1",
+        "copies": 1,
+        "pert_val_macro_f1_mean": 0.9739200322964733,
+        "pert_val_macro_f1_sd": 0.0014617641215409684,
+        "policy": "targeted_lexical",
+        "rate": 0.0,
+        "satisfies_guard": false
+      },
+      {
+        "clean_val_macro_f1": 0.9818050157659308,
+        "clean_val_macro_f1_eligible": 0.98270012378791,
+        "condition": "aug_random1_x2",
+        "copies": 2,
+        "pert_val_macro_f1_mean": 0.9753448905422278,
+        "pert_val_macro_f1_sd": 0.0016375072982374227,
+        "policy": "random1",
+        "rate": 0.0,
+        "satisfies_guard": true
+      }
+    ],
+    "clean_only_rule_winner": "aug_random_p30_x1",
+    "clean_reference_macro_f1": 0.9817917749579574,
+    "dataset": "d1_validation",
+    "decision": {
+      "fallback_ranking_by_clean_f1": [],
+      "feasible": [
+        "aug_random1_x1",
+        "aug_random_p30_x1",
+        "aug_random1_x2"
+      ],
+      "guard_failed": false,
+      "margin": 0.0025492168040491814,
+      "objective_leader": "aug_random_p30_x1",
+      "ranked_by_objective": [
+        "aug_random_p30_x1",
+        "aug_random1_x2",
+        "aug_random1_x1"
+      ],
+      "runner_up": "aug_random1_x2",
+      "tie_group": [
+        "aug_random_p30_x1"
+      ],
+      "tie_tolerance": 0.0015558600129770021,
+      "winner": "aug_random_p30_x1",
+      "winner_minus_leader": 0.0
+    },
+    "delta_in_validation_errors": 5.858718716084844,
+    "delta_standard_error": 0.0029514955748538257,
+    "fallback": "if no candidate passes the guard, select the candidate with the highest clean validation Macro F1 and record guard_failed = true",
+    "guard": "clean D1 Validation Macro F1 at 0.5 >= clean condition's value minus delta, where delta = one class-stratified bootstrap standard error of the clean condition's own validation Macro F1 (1,000 resamples, seed delta_se)",
+    "guard_failed": false,
+    "guard_multiplier": 1.0,
+    "guard_value": 0.9788402793831036,
+    "note": "D1 Validation only. selected_config.json is written with frozen = true before any test split or D4 is opened; D1/D2/D3 Test and D4 are scored once afterwards.",
+    "objective": "maximise the mean Macro F1 at 0.5 over the five random1 realizations",
+    "perturbation_policy": "random1",
+    "perturbed_validation_pairs": 1973,
+    "realization_seeds": [
+      6501,
+      6502,
+      6503,
+      6504,
+      6505
+    ],
+    "realizations": "five random1 copies of D1 Validation (seeds augment_select); one targeted_lexical copy (first seed) is descriptive only",
+    "selected_condition": "aug_random_p30_x1",
+    "sensitivity": {
+      "guard_multipliers": [
+        0.0,
+        0.5,
+        1.0,
+        2.0
+      ],
+      "output": "results/e5/selection_sensitivity.csv",
+      "single_realizations": true
+    },
+    "threshold": 0.5,
+    "tie_rule": "candidates whose mean lies within the leader's realization SD are tied; ties prefer fewer copies, then lighter rate, then policy order random1 < random_rate < targeted_lexical, then list order"
+  },
+  "threat_model": "accidental single-character typos in alphabetic words of at least four letters (adjacent swap, deletion, duplication, QWERTY-neighbour substitution; interior letters only)",
+  "vectorizer_source": "joblib"
+}
